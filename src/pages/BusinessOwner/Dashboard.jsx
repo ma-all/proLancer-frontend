@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
-import { index } from '../../services/user'
+// import { index } from '../../services/user'
 
 const Dashboard = (props) => {
 
     const [allUsers, setAllUsers] = useState([])
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const usersData =  await index()
-            setAllUsers(usersData)
-        }
-        fetchUsers()
+    // useEffect(() => {
+    //     const fetchUsers = async () => {
+    //         const usersData =  await index()
+    //         setAllUsers(usersData)
+    //     }
+    //     fetchUsers()
         
-    }, [])
+    // }, [])
 
     return (
         <section>
