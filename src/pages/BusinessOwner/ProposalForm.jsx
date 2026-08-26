@@ -6,7 +6,7 @@ const ProposalForm = (props) => {
     
     const navigate = useNavigate()
 
-    const developerId = useParams()
+    const { developerId } = useParams()
 
     const initialState = {
         username: developerId,
@@ -18,7 +18,6 @@ const ProposalForm = (props) => {
         status: 'Pending',
     }
 
-    const [developer, setDEveloper] = useState()
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState('')
 
@@ -29,7 +28,7 @@ const ProposalForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const newProposal = await proposalService(formData)
+            const newProposal = await proposalService.create(formData)
             setFormData(initialState)
             navigate('/projectProposal')
         } catch (error) {
@@ -57,7 +56,7 @@ const ProposalForm = (props) => {
 
             <br />
             <button type='submit'>Submit</button>
-            <button>Cancel</button>
+            <button onClick={() => navigate('/')}>Cancel</button>
         </form>
         </>
     )
