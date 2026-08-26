@@ -76,3 +76,19 @@ const updateStatus = async (projectProposalId, proposalFormData) => {
         console.log(error)
     }
 }
+
+const deleteProposal = async (projectProposalId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${projectProposalId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export {create, index, show, update, updateStatus, deleteProposal }
