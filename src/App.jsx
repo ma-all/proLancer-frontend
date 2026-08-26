@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router"
 import { useState } from "react"
 import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
-import Dashboard from "./pages/Dashboard"
+import Dashboard from "./pages/BusinessOwner/Dashboard"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
