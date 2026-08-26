@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router'
 import * as proposalService from '../../services/proposal'
 
 const ProposalForm = (props) => {
-    
+
     const navigate = useNavigate()
 
     const { developerId } = useParams()
@@ -22,7 +22,7 @@ const ProposalForm = (props) => {
     const [message, setMessage] = useState('')
 
     const handleChange = async (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value})
+        setFormData({ ...formData, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = async (event) => {
@@ -38,26 +38,34 @@ const ProposalForm = (props) => {
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-            Website Name:
-            <input type='text' name='name' onChange={handleChange} value={formData.name} required />
+            <form onSubmit={handleSubmit} className='proposal-form-container'>
+                <div className='proposal-form-card'>
+                    <h2>New Project Proposal</h2>
+                    <hr />
+                    <div className='proposal-form'>
+                        Website Name:
+                        <input type='text' name='name' onChange={handleChange} value={formData.name} required />
 
-            Description:
-            <input type='text' name='description' onChange={handleChange} value={formData.description} required />
+                        Description:
+                        <input type='text' name='description' onChange={handleChange} value={formData.description} required />
 
-            Budget:
-            <input type='number' name='budget' onChange={handleChange} value={formData.budget} required />
+                        Budget:
+                        <input type='number' name='budget' onChange={handleChange} value={formData.budget} required />
 
-            Features:
-            <input type='text' name='features' onChange={handleChange} value={formData.features} required />
+                        Features:
+                        <input type='text' name='features' onChange={handleChange} value={formData.features} required />
 
-            Theme:
-            <input type='text' name='theme' onChange={handleChange} value={formData.theme} required />
+                        Theme:
+                        <input type='text' name='theme' onChange={handleChange} value={formData.theme} required />
 
-            <br />
-            <button type='submit'>Submit</button>
-            <button onClick={() => navigate('/')}>Cancel</button>
-        </form>
+                        <br />
+                        <div className='proposal-form-two-buttons'>
+                            <button type='submit' className='proposal-form-button'>Submit</button>
+                            <button onClick={() => navigate('/')} className='proposal-form-button'>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </>
     )
 }

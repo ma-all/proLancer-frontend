@@ -19,8 +19,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var( --color-surface);
+  background-color: var( --dark);
   padding: 2px 10px;
+  color: var(--light)
 }
 
 .nav-brand {
@@ -38,7 +39,173 @@ nav a:hover {
   color: var(--color-primary);
 }
 
+.proposal-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
 
+.proposal-list-card {
+  box-sizing: border-box;
+  width: 350%;
+  height: 150px;
+  background: white;
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  gap: 12px;
+  padding: 24px;
+}
+
+.proposal-list-card:hover {
+  border: 1px solid var(--grey);
+  transform: scale(1.05);
+}
+
+.proposal-list-button {
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--light);
+  padding: 1em 1.8em;
+  background: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.proposal-list-button:hover{
+  background-color: var(--dark);
+}
+
+.proposal-details-container, .proposal-form-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.proposal-details-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 650px;
+  background-color: white;
+  border: 1px solid var(--light);
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  padding: 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.proposal-details-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.proposal-details-top h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 20px 0;
+}
+
+.proposal-details-rest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.proposal-details {
+  flex: 1 1 calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proposal-form-card {
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 650px;
+  background-color: white;
+  border: 1px solid var(--light);
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  padding: 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  margin: 0 auto;
+}
+
+.proposal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proposal-form input {
+  width: 100%;
+  height: 44px;
+  background-color: #05060f0a;
+  border-radius: .5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.proposal-form-two-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.proposal-form-button {
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--light);
+  padding: 1em 1.8em;
+  background: var(--grey);
+  display: inline;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  width: 80%;
+  flex: 1;
+}
+
+.proposal-form-button:hover {
+  background-color: var(--dark);
+}
+/* 
 form {
   display: flex;
   flex-direction: column;
@@ -97,4 +264,4 @@ button:disabled {
   border: 1px solid var(--color-border);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
+} */

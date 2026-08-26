@@ -10,10 +10,9 @@ const Nav = (props) => {
 
     return (
         <nav>
-            <Link className="nav-brand" to="/">App Name</Link>
+            <Link className="nav-brand" to="/">Logo</Link>
             { props.user ? (
                 <ul>
-                    <li>Welcome, {props.user.username}!</li>
                     <li>
                         <Link to="/">Dashboard</Link>
                     </li>
@@ -29,9 +28,6 @@ const Nav = (props) => {
                             <link to="/developer/profile">profile</link>
                         </li>
                     )}
-
-
-
                 
                     <li>
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
