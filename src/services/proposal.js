@@ -28,3 +28,16 @@ const index = async () => {
         console.log(error)
     }
 }
+
+const show = async (projectProposalId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${projectProposalId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
