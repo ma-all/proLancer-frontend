@@ -8,6 +8,11 @@ import Landing from "./pages/Landing"
 import Dashboard from "./pages/BusinessOwner/Dashboard"
 import ProposalForm from './pages/BusinessOwner/ProposalForm'
 
+
+
+import BusinessOwnerProfile from "./pages/BusinessOwner/BusinessOwnerProfile"
+import DeveloperProfile from "./pages/Developer/Profile" 
+
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
 
@@ -29,6 +34,8 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
         <Route path='/projectProposal' element={<ProposalForm />} />
+          <Route path='/business-owner/profile'element={<BusinessOwnerProfile user={user} setUser={setUser}/>}/>
+        <Route path='/developer/profile' element={<DeveloperProfile user={user}  setUser={setUser}/>}/>
       </Routes>
       </main>
     </div>

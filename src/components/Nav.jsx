@@ -17,6 +17,22 @@ const Nav = (props) => {
                     <li>
                         <Link to="/">Dashboard</Link>
                     </li>
+                    {props.user.role === 'Business Owner'&&(
+                        <li>
+                            <link to="/business-owner/profile">profile</link>
+                        </li>
+                    )}
+
+
+                    {props.user.role === 'developer'&& (
+                        <li>
+                            <link to="/developer/profile">profile</link>
+                        </li>
+                    )}
+
+
+
+                
                     <li>
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
                     </li>
