@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {user} from '../../services/user'
+import * as userService from '../../services/user'
 
-
-const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
+const BusinessOwnerProfile=(props)=>{
+    const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
      'Jewelry', 'Cosmetics', 'Clothing', 'Footware', 'Photo & Videography',
       'Event Planning', 'Beauty Salon', 'Spa', 'Tech Equipment',
        'Equipment & Machinery', 'Gym', 'Art Studio',
@@ -10,12 +10,12 @@ const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
         'Furniture & Home Decor', 'Architecture',
      'Stationary', 'Medical Clinic', 'Pharmacy', 'Dental Clinic', 'Fitness & Health', 'Other']
 
-
-     const Profile =({user, setUser, navigate})=>{
-        const[formData, setFormData]=useState({
-            description: user?.description || '',
-            category: user?.category ||'',
-        })
+     const initialState = {
+        description: '',
+        category: '',
+     }   
+     const[formData, setFormData]=useState(initialState)
+        
 
         const handleChange = (e) =>{
             setFormData({ ...formData,[e.target.name]: e.target.value})
@@ -40,8 +40,8 @@ const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
         }
 
         return(
-            <div className="card-container">
-                <h2>Profile(Business owner)</h2>
+            <div >
+                <h2>Profile</h2>
                 <form onSubmit={handleSubmit}>
                     <label>Description</label>
                     <textarea
@@ -52,7 +52,7 @@ const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
                     />
 
                     <p>category</p>
-                    <div className="category-group">
+                    <div >
                         {CATEGORIES.map((cate)=>(
                             <button
                             key={cate}
@@ -76,5 +76,7 @@ const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
 
 
 
-
-     }
+    }
+     
+// export default BusinessOwnerProfile
+export default BusinessOwnerProfile
