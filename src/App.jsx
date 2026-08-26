@@ -10,6 +10,8 @@ import ProposalForm from './pages/BusinessOwner/ProposalForm'
 
 
 
+import BusinessOwnerProfile from "./pages/BusinessOwner/BusinessOwnerProfile"
+import DeveloperProfile from "./pages/Developer/Profile" 
 import ProposalList from './pages/BusinessOwner/ProposalList'
 
 const getUserFromToken = () => {
@@ -32,6 +34,9 @@ const App = () => {
         <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
+
+          <Route path='/business-owner/profile'element={<BusinessOwnerProfile user={user} setUser={setUser}/>}/>
+        <Route path='/developer/profile' element={<DeveloperProfile user={user}  setUser={setUser}/>}/>
         <Route path='/projectProposal/Form' element={<ProposalForm />} />
 
 
