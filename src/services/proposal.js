@@ -34,7 +34,42 @@ const show = async (projectProposalId) => {
         const res = await fetch(`${BASE_URL}/${projectProposalId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
             },
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//for business owner, allow them to change info 
+const update = async (projectProposalId, proposalFormData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${projectProposalId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(proposalFormData)
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//for developers
+const updateStatus = async (projectProposalId, proposalFormData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${projectProposalId}/status`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(proposalFormData)
         })
         return res.json()
     } catch (error) {
