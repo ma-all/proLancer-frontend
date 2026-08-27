@@ -12,8 +12,9 @@ const ProfileFormDev=(props)=>{
     ]
      const [formData, setFormData]=useState({
         description: props.user?.description ||'',
-        githubUrl: props.user?.githubUrl|| [], 
-        deployedLinks: props.user?.deployedLinks?.[0]||'',
+        title: props.user?.title || '',
+        githubUrl: props.user?.githubUrl || [], 
+        deployedLinks: props.user?.deployedLinks?.[0] ||'',
         skills: props.user?.skills ||[],
 
      })
@@ -63,6 +64,9 @@ const ProfileFormDev=(props)=>{
         <div>
             <h2>Profile</h2>
             <form onSubmit={handleSubmit}>
+                Title:
+                <input name='title' value={formData.title} onChange={handleChange} required />
+
                 <label>Description</label>
                 <textarea name="description" rows={4} value={formData.description} onChange={handleChange} />
 
@@ -70,7 +74,7 @@ const ProfileFormDev=(props)=>{
                <div>
                 <label>GitHub Url</label>
                 <div>
-                     <input type="url" name="githubUrl" placeholder="GitHub url" value={currentGitHubInput} onChange={(e)=> setcurrentGitHubInput(e.target.value)} />
+                     <input type="url" name="githubUrl" value={currentGitHubInput} onChange={(e)=> setcurrentGitHubInput(e.target.value)} />
                <button type="button" onClick={handleAddGithubUrl}>Add</button>
                 </div>
                 <ul>
@@ -85,10 +89,10 @@ const ProfileFormDev=(props)=>{
                </div>
                 
 
-                <input type="url" name="deployedLinks" placeholder="Project Deployed url" value={formData.deployedLinks} onChange={handleChange} />
+                <input type="url" name="deployedLinks" value={formData.deployedLinks} onChange={handleChange} />
 
 
-                <input type="text" name="skills" placeholder="Skills" value={formData.skills} onChange={handleChange}
+                <input type="text" name="skills" value={formData.skills} onChange={handleChange}
                 
                 />
                 <div>
