@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as userService from '../../services/user'
 
-const BusinessOwnerProfile=(props)=>{
+const ProfileForm=(props)=>{
     const CATEGORIES =['Cafe', 'Restaurant', 'Bakery', 'Catering',
      'Jewelry', 'Cosmetics', 'Clothing', 'Footware', 'Photo & Videography',
       'Event Planning', 'Beauty Salon', 'Spa', 'Tech Equipment',
@@ -77,6 +77,4 @@ const BusinessOwnerProfile=(props)=>{
 
 
     }
-     
-// export default BusinessOwnerProfile
-export default BusinessOwnerProfile
+export default ProfileForm

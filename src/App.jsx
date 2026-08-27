@@ -10,8 +10,8 @@ import ProposalForm from './pages/BusinessOwner/ProposalForm'
 
 
 
-import BusinessOwnerProfile from "./pages/BusinessOwner/BusinessOwnerProfile"
-import DeveloperProfile from "./pages/Developer/Profile" 
+import ProfileForm from "./pages/BusinessOwner/ProfileForm"
+import ProfileFormDev from "./pages/Developer/ProfileFormDev" 
 import ProposalList from './pages/BusinessOwner/ProposalList'
 import ProposalDetails from './pages/BusinessOwner/ProposalDetails'
 import * as proposalService from './services/proposal'
@@ -51,9 +51,9 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
 
-          <Route path='/business-owner/profile'element={<BusinessOwnerProfile user={user} setUser={setUser}/>}/>
-        <Route path='/developer/profile' element={<DeveloperProfile user={user}  setUser={setUser}/>}/>
-        <Route path='/projectProposal/Form' element={<ProposalForm />} />
+          <Route path='/business-owner/profile/form'element={<ProfileForm user={user} setUser={setUser}/>}/>
+        <Route path='/developer/profile/form' element={<ProfileFormDev user={user}  setUser={setUser}/>}/>
+        <Route path='/projectProposal/form' element={<ProposalForm />} />
 
 
         <Route path='/projectProposal' element={<ProposalList proposals={proposals} />}/>

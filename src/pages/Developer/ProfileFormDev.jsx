@@ -1,7 +1,7 @@
 import { useState } from "react"
 import * as userService from '../../services/user'
 
-const Profile=(props)=>{
+const ProfileFormDev=(props)=>{
     const AVAILABLE_SKILLS=[
      'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React',
      'BootStrap', 'SCSS', 'Angular', 'Node.js', 'Python',
@@ -93,7 +93,7 @@ const Profile=(props)=>{
                 />
                 <div>
                     {/* <button onClick={()=> window.history.back()}>Back</button> */}
-                    <button type="submit">Next</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
         </div>
@@ -101,4 +101,4 @@ const Profile=(props)=>{
 
 }
 
-export default Profile
+export default ProfileFormDev
