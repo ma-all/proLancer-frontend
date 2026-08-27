@@ -1,7 +1,7 @@
 import Nav from "./components/Nav"
 import SignUpForm from "./pages/SignUpForm"
 import './App.css'
-import { Routes, Route } from "react-router"
+import { Routes, Route, Navigate } from "react-router"
 import { useEffect, useState } from "react"
 import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
@@ -30,6 +30,9 @@ const App = () => {
 
   const [proposals, setProposals] = useState([])
 
+  const developer = user?.role === 'Developer'
+  const businessOwner = user?.role === 'Business Owner'
+
     useEffect(() => {
         const fetchProposals = async () => {
             try {
@@ -51,13 +54,13 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
 
-          <Route path='/business-owner/profile/form'element={<ProfileForm user={user} setUser={setUser}/>}/>
-        <Route path='/developer/profile/form' element={<ProfileFormDev user={user}  setUser={setUser}/>}/>
-        <Route path='/projectProposal/form' element={<ProposalForm />} />
+        <Route path='/business-owner/profile/form'element={businessOwner ? <ProfileForm user={user} setUser={setUser}/> : <Navigate to='/sign-in' />}/>
+        <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user}  setUser={setUser}/> : <Navigate to='/sign-in' />}/>
+        <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm /> : <Navigate to='/sign-in' />} />
 
 
-        <Route path='/projectProposal' element={<ProposalList proposals={proposals} />}/>
-        <Route path='/projectProposal/:projectProposalId' element={<ProposalDetails proposals={proposals} />} />
+        <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} /> : <Navigate to='/sign-in' />}/>
+        <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} /> : <Navigate to='/sign-in' />} />
       </Routes>
       </main>
     </div>
