@@ -10,9 +10,14 @@ const create = async (proposalFormData) => {
             },
             body: JSON.stringify(proposalFormData),
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
+        throw error
     }
 }
 
@@ -23,7 +28,11 @@ const index = async () => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
     }
@@ -37,7 +46,11 @@ const show = async (projectProposalId) => {
                 'Content-Type': 'application/json',
             },
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
     }
@@ -54,7 +67,11 @@ const update = async (projectProposalId, proposalFormData) => {
             },
             body: JSON.stringify(proposalFormData)
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
     }
@@ -71,7 +88,11 @@ const updateStatus = async (projectProposalId, proposalFormData) => {
             },
             body: JSON.stringify(proposalFormData)
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
     }
@@ -85,7 +106,11 @@ const deleteProposal = async (projectProposalId) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         })
-        return res.json()
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || data.message || 'failed to create')
+        }
+        return data
     } catch (error) {
         console.log(error)
     }

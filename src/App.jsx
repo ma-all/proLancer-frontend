@@ -18,6 +18,7 @@ import * as proposalService from './services/proposal'
 import DeveloperList from "./pages/BusinessOwner/DeveloperList"
 import * as DevService from './services/developers'
 import DeveloperDetails from "./pages/BusinessOwner/DeveloperDetails"
+import Requests from "./pages/Developer/Requests"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -73,7 +74,7 @@ const App = () => {
 
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
           <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
-          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm /> : <Navigate to='/sign-in' />} />
+          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
 
 
           <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} /> : <Navigate to='/sign-in' />} />
@@ -81,7 +82,11 @@ const App = () => {
 
           <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers}/> : <Navigate to='/sign-in' />} />
 
-          <Route path='/developers/:developerId' element={businessOwner ? <DeveloperDetails /> : <Navigate to='/sign in' />} />
+          {/* <Route path='/developers/:developerId' element={businessOwner ? <DeveloperDetails /> : <Navigate to='/sign-in' />} /> */}
+
+          <Route path='/requests' element={developer ? <Requests proposals={proposals} setProposals={setProposals} user={user} /> : <Navigate to='/sign-in' />} />
+          <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
+
         </Routes>
       </main>
     </div>

@@ -19,7 +19,7 @@ const DeveloperList = (props) => {
     return (
         <>
             <h2>Browse Developers</h2>
-
+            <div className="developers-container">
             {developers.map((dev) => (
                 <div key={dev._id}>
                     <p>{dev.username}</p>
@@ -30,6 +30,7 @@ const DeveloperList = (props) => {
                     {/* <button onClick={() => handleViewDetails(dev._id)}>View Details</button> */}
                 </div>
             ))}
+            </div>
         </>
     )
     
