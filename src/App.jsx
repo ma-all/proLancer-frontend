@@ -17,6 +17,7 @@ import ProposalDetails from './pages/BusinessOwner/ProposalDetails'
 import * as proposalService from './services/proposal'
 import DeveloperList from "./pages/BusinessOwner/DeveloperList"
 import * as DevService from './services/developers'
+import DeveloperDetails from "./pages/BusinessOwner/DeveloperDetails"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -79,6 +80,8 @@ const App = () => {
           <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} /> : <Navigate to='/sign-in' />} />
 
           <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers}/> : <Navigate to='/sign-in' />} />
+
+          <Route path='/developers/:developerId' element={businessOwner ? <DeveloperDetails /> : <Navigate to='/sign in' />} />
         </Routes>
       </main>
     </div>
