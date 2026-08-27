@@ -11,10 +11,12 @@ import ProposalForm from './pages/BusinessOwner/ProposalForm'
 
 
 import ProfileForm from "./pages/BusinessOwner/ProfileForm"
-import ProfileFormDev from "./pages/Developer/ProfileFormDev" 
+import ProfileFormDev from "./pages/Developer/ProfileFormDev"
 import ProposalList from './pages/BusinessOwner/ProposalList'
 import ProposalDetails from './pages/BusinessOwner/ProposalDetails'
 import * as proposalService from './services/proposal'
+import DeveloperList from "./pages/BusinessOwner/DeveloperList"
+import * as DevService from './services/developers'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -30,38 +32,54 @@ const App = () => {
 
   const [proposals, setProposals] = useState([])
 
+  const [allDevelopers, setAllDevelopers] = useState([])
+
   const developer = user?.role === 'Developer'
   const businessOwner = user?.role === 'Business Owner'
 
-    useEffect(() => {
-        const fetchProposals = async () => {
-            try {
-                const data = await proposalService.index()
-                setProposals(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchProposals()
-    }, [])
-  
+  useEffect(() => {
+    const fetchProposals = async () => {
+      try {
+        const data = await proposalService.index()
+        setProposals(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProposals()
+  }, [])
+
+  useEffect(() => {
+    const fetchDevelopers = async () => {
+      try {
+        const data = await DevService.indexDev()
+        setAllDevelopers(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchDevelopers()
+  }, [])
+
   return (
     <div>
       <Nav user={user} setUser={setUser} />
       <main className="app-main">
-      <Routes>
-        <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
-        <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
-        <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
+        <Routes>
+          <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
+          <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
+          <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
 
-        <Route path='/business-owner/profile/form'element={businessOwner ? <ProfileForm user={user} setUser={setUser}/> : <Navigate to='/sign-in' />}/>
-        <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user}  setUser={setUser}/> : <Navigate to='/sign-in' />}/>
-        <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm /> : <Navigate to='/sign-in' />} />
+          <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
+          <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
+          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm /> : <Navigate to='/sign-in' />} />
 
 
-        <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} /> : <Navigate to='/sign-in' />}/>
-        <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} /> : <Navigate to='/sign-in' />} />
-      </Routes>
+          <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} /> : <Navigate to='/sign-in' />} />
+          <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} /> : <Navigate to='/sign-in' />} />
+
+          <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers}/> : <Navigate to='/sign-in' />} />
+        </Routes>
       </main>
     </div>
   )
