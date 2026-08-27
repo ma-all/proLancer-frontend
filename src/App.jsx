@@ -1,7 +1,7 @@
 import Nav from "./components/Nav"
 import SignUpForm from "./pages/SignUpForm"
 import './App.css'
-import { Routes, Route } from "react-router"
+import { Routes, Route, useNavigate } from "react-router"
 import { useEffect, useState } from "react"
 import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
@@ -15,6 +15,12 @@ import ProfileFormDev from "./pages/Developer/ProfileFormDev"
 import ProposalList from './pages/BusinessOwner/ProposalList'
 import ProposalDetails from './pages/BusinessOwner/ProposalDetails'
 import * as proposalService from './services/proposal'
+import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
+
+
+
+
+import * as userService from './services/user'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -41,6 +47,33 @@ const App = () => {
         }
         fetchProposals()
     }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+    useEffect(() => {
+      const fetchuserData = async () => {
+        if(user?.id){
+          try {
+            const fullUser = await userService.show(user._id)
+            setUser(fullUser)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      }
+      fetchuserData
+    }, [])
+
+    const navigate=useNavigate()
   
   return (
     <div>
@@ -58,6 +91,9 @@ const App = () => {
 
         <Route path='/projectProposal' element={<ProposalList proposals={proposals} />}/>
         <Route path='/projectProposal/:projectProposalId' element={<ProposalDetails proposals={proposals} />} />
+
+        <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser}/>}/>
+        {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}
       </Routes>
       </main>
     </div>

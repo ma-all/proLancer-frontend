@@ -1,8 +1,15 @@
+import React from "react"
 import { useState } from "react"
+import { useNavigate, useParams } from "react-router"
 import * as userService from '../../services/user'
+import { index } from "../../services/proposal"
 
 const ProfileFormDev=(props)=>{
-    const AVAILABLE_SKILLS=[
+    // const{developerId}=useParams()
+    const navigate = useNavigate()
+    const user = props.user
+    
+    const SKILLS_OPTIONS=[
      'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React',
      'BootStrap', 'SCSS', 'Angular', 'Node.js', 'Python',
      'Java', 'C#', 'Express.js', 'Django', 'MongoDB', 'PHP',
@@ -10,10 +17,11 @@ const ProfileFormDev=(props)=>{
      'Firebase', 'Cloudinary', 'Stripe'
 
     ]
+    // const developer = (props.developers && props.developers.find((dev)=>dev._id === developerId || props.user))
      const [formData, setFormData]=useState({
         description: props.user?.description ||'',
         githubUrl: props.user?.githubUrl|| [], 
-        deployedLinks: props.user?.deployedLinks?.[0]||'',
+        deployedLinks: props.user?.deployedLinks ||[],
         skills: props.user?.skills ||[],
 
      })
@@ -26,6 +34,13 @@ const ProfileFormDev=(props)=>{
         setFormData({ ...formData,[e.target.name]: e.target.value})
 
     }
+
+
+    // const handleArraychange=(index,filed,value)=>{
+    //     const update = [...formData[filed]]
+    //     update[index]=value
+    //     setFormData({ ...formData, [filed]: update)
+    // }
 
     const handleAddGithubUrl = ()=>{
         if (currentGitHubInput ==='')return
@@ -47,18 +62,44 @@ const ProfileFormDev=(props)=>{
     }
 
 
-
     const handleSubmit = async (e)=>{
         e.preventDefault()
+        if(!props.user?._id){
+            console.log('user Id missing')
+            return
+        }
         try {
-            const updatedUser = await update(props.user._id , formData)
-            if(props.setUser) props.setUser(updatedUser)
+            const data ={
+                ...formData,
+                developerDescription:formData.description
+            }
+            
+             const updatedUser = await userService.update(props.user._id , data)
+            if(props.setUser) {
+                props.setUser(updatedUser)
+            }
+
+                navigate('/developer/profile')
             
         } catch (error) {
             console.log('Error updating profile:',error)
             
         }
     }
+
+   
+
+    
+
+    const handleSkillschange=(e)=>{
+      const selectedOptions = Array.from( e.target.selectedOptions, (option) => option.value)
+        setFormData({
+            ...formData,
+            skills:selectedOptions
+        })
+    }
+
+    
     return(
         <div>
             <h2>Profile</h2>
@@ -86,11 +127,16 @@ const ProfileFormDev=(props)=>{
                 
 
                 <input type="url" name="deployedLinks" placeholder="Project Deployed url" value={formData.deployedLinks} onChange={handleChange} />
-
-
-                <input type="text" name="skills" placeholder="Skills" value={formData.skills} onChange={handleChange}
                 
-                />
+                Skills:
+                <select name="skills" multiple value={formData.skills} onChange={handleSkillschange}>
+                    {SKILLS_OPTIONS.map((skill)=>(
+                        <option key={skill} value={skill}>{skill}</option>
+                    ))}
+                </select>
+                {/* <input type="text" name="skills" placeholder="Skills" value={formData.skills} onChange={handleChange}
+                
+                /> */}
                 <div>
                     {/* <button onClick={()=> window.history.back()}>Back</button> */}
                     <button type="submit">Submit</button>
