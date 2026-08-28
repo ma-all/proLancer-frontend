@@ -2,10 +2,14 @@ import * as proposalService from '../../services/proposal'
 
 const Requests = (props) => {
 
+    const currentUserId = (props.user?._id || props.user)?.toString()
+
     const proposalRequests = props.proposals?.filter(
-        (proposal) => 
-            proposal.developer === props.user?._id
-    ) 
+        (proposal) => {
+            const developerId = (proposal.developer?._id || proposal.developer)?.toString()
+            return developerId === currentUserId
+        }
+    ) || []
 
     const handleStatus = async (proposalId, newStatus) => {
         try {
@@ -16,15 +20,17 @@ const Requests = (props) => {
                 )
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
     return (
         <>
             <h2>Proposal Requests</h2>
+            <div className='proposal-details-container'>
+            
             {proposalRequests.map((request) => (
-                <div key={request._id}>
+                <div key={request._id} className='proposal-details-card'>
                     {/* <p>does it print anything inside</p> */}
                     <p>{request.name}</p>
                     <p>{request.description}</p>
@@ -34,7 +40,7 @@ const Requests = (props) => {
                     <p>{request.status}</p>
 
                     <br />
-                    {request.status === 'Pending' && (
+                    {(request.status === 'Pending' || !request.status) && (
                         <>
                             <button onClick={() => handleStatus(request._id, 'Accepted')}>Accept</button>
                             <button onClick={() => handleStatus(request._id, 'Rejected')}>Reject</button>
@@ -42,6 +48,7 @@ const Requests = (props) => {
                     )}
                 </div>
             ))}
+            </div>
         </>
     )
 }

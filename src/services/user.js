@@ -2,8 +2,6 @@ import { data } from "react-router"
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`
 
-
-//update from me
 const show = async(userId)=>{
     try {
         const res = await fetch(`${BASE_URL}/user/${userId}`,{
@@ -22,10 +20,9 @@ const show = async(userId)=>{
     }
 }
 
-
 const update = async(userId, formData)=>{
-try {
-    const res = await fetch(`${BASE_URL}/user/${userId}`,{
+    try {
+        const res = await fetch(`${BASE_URL}/user/${userId}`,{
             method: 'PUT',
             headers:{
                 'Content-Type':'application/json',
@@ -40,7 +37,6 @@ try {
             throw new Error(data.err)
         }
         return data
-    
     } catch (error) {
       throw new Error(data.error)
     }    
@@ -62,7 +58,6 @@ const deleteGithubLink = async(userId, githbUrl)=>{
             console.log(data.err)
             throw new Error(data.err)
         }
-
         return data
         
     } catch (error) {
