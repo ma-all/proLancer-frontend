@@ -1,35 +1,39 @@
-import { useState } from "react"
+import React, { useState } from "react"
+import { useNavigate } from "react-router"
 import * as userService from '../../services/user'
 
-const ProfileFormDev=(props)=>{
-    const AVAILABLE_SKILLS=[
-     'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React',
-     'BootStrap', 'SCSS', 'Angular', 'Node.js', 'Python',
-     'Java', 'C#', 'Express.js', 'Django', 'MongoDB', 'PHP',
-     'PostgreSQL', 'JWT Authentication', 'WebSockets', 'GitHub', 
-     'Firebase', 'Cloudinary', 'Stripe'
+const ProfileFormDev = (props) => {
+    const navigate = useNavigate()
 
-    ]
-     const [formData, setFormData]=useState({
-        description: props.user?.description ||'',
-        title: props.user?.title || '',
-        githubUrl: props.user?.githubUrl || [], 
-        deployedLinks: props.user?.deployedLinks?.[0] ||'',
-        skills: props.user?.skills ||[],
+    const skillsOptions = [
+        'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React',
+        'BootStrap', 'SCSS', 'Angular', 'Node.js', 'Python',
+        'Java', 'C#', 'Express.js', 'Django', 'MongoDB', 'PHP',
+        'PostgreSQL', 'JWT Authentication', 'WebSockets', 'GitHub',
+        'Firebase', 'Cloudinary', 'Stripe']
+    // const developer = (props.developers && props.developers.find((dev)=>dev._id === developerId || props.user))
 
-     })
+    const initialState = {
+        developerDescription: props.user?.developerDescription || '',
+        developerTitle: props.user?.developerTitle || '',
+        githubUrl: props.user?.githubUrl || [],
+        deployedLinks: props.user?.deployedLinks || [],
+        skills: props.user?.skills || []
+    }
 
-    const [currentGitHubInput, setcurrentGitHubInput]=useState('')
+    const [formData, setFormData] = useState(initialState)
 
+    const [currentGitHubInput, setcurrentGitHubInput] = useState('')
 
+    const [currentDeployed, setCurrentDeployed] = useState('')
 
-    const handleChange = (e)=>{
-        setFormData({ ...formData,[e.target.name]: e.target.value})
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
 
     }
 
-    const handleAddGithubUrl = ()=>{
-        if (currentGitHubInput ==='')return
+    const handleAddGithubUrl = () => {
+        if (currentGitHubInput === '') return
         setFormData({
             ...formData,
             githubUrl: [...formData.githubUrl, currentGitHubInput],
@@ -38,66 +42,122 @@ const ProfileFormDev=(props)=>{
         setcurrentGitHubInput('')
     }
 
-    const handleRemoveGithubUrl = (index)=>{
-      const updatedUrls = [...formData.githubUrl]
-      updatedUrls.splice(index,1)
-      setFormData({
-        ...formData,
-        githubUrl:updatedUrls
-      })
+    const handleRemoveGithubUrl = (index) => {
+        const updatedUrls = [...formData.githubUrl]
+        updatedUrls.splice(index, 1)
+        setFormData({
+            ...formData,
+            githubUrl: updatedUrls
+        })
     }
 
+    const handleAddDeployedLinks = () => {
+        if (currentDeployed === '')
+            return
+        setFormData({ ...formData, deployedLinks: [...formData.deployedLinks, currentDeployed] })
+        setCurrentDeployed('')
+    }
 
+    const handleRemoveDeployedLinks = (index) => {
+        const updatedLink = [...formData.deployedLinks]
+        updatedLink.splice(index, 1)
+        setFormData({ ...formData, deployedLinks: updatedLink })
+    }
 
-    const handleSubmit = async (e)=>{
+    const handleSkills = (event) => {
+        if (event?.target.selectedOptions) {
+            const selectedSkills = Array.from(
+                event.target.selectedOptions,
+                (skill) => skill.value
+            )
+            setFormData({ ...formData, skills: selectedSkills })
+            return
+        }
+
+        if (Array.isArray(event)) {
+            setFormData({...formData, skills: event})
+            return
+        }
+
+        if (event?.target?.value) {
+            const value = event.target.value
+            const updatedSkills = formData.skills.includes(value) ? formData.skills.filter((skill) => skill !== value) : [...formData.skills, value]
+
+            setFormData({...formData, skills: updatedSkills})
+        }
+        
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        if(!props.user?._id){
+            console.log('user Id missing')
+            return
+        }
         try {
-            const updatedUser = await update(props.user._id , formData)
-            if(props.setUser) props.setUser(updatedUser)
-            
+            const updatedUser = await userService.update(props.user._id, formData)
+            if (props.setUser)
+                props.setUser(updatedUser)
+            navigate('/developer/profile')
         } catch (error) {
-            console.log('Error updating profile:',error)
-            
+            console.log('Error updating profile:', error)
         }
     }
-    return(
+
+    return (
         <div>
             <h2>Profile</h2>
             <form onSubmit={handleSubmit}>
                 Title:
-                <input name='title' value={formData.title} onChange={handleChange} required />
+                <input type='text' name='developerTitle' value={formData.developerTitle} onChange={handleChange} />
 
                 <label>Description</label>
-                <textarea name="description" rows={4} value={formData.description} onChange={handleChange} />
+                <textarea name="developerDescription" rows={4} value={formData.developerDescription} onChange={handleChange} />
 
 
-               <div>
-                <label>GitHub Url</label>
                 <div>
-                     <input type="url" name="githubUrl" value={currentGitHubInput} onChange={(e)=> setcurrentGitHubInput(e.target.value)} />
-               <button type="button" onClick={handleAddGithubUrl}>Add</button>
+                    <label>GitHub Url</label>
+                    <div>
+                        <input type="url" name="githubUrl" value={currentGitHubInput} onChange={(e) => setcurrentGitHubInput(e.target.value)} />
+
+                        <button type="button" onClick={handleAddGithubUrl}>Add Link</button>
+                    </div>
+                    <ul>
+                        {formData.githubUrl.map((url, index) => (
+                            <li key={index}>
+                                <span>{url}</span>
+                                <button type='button' onClick={() => handleRemoveGithubUrl(index)}>Remove Link</button>
+
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                Deployed Websites Links:
+                <div>
+                    <input type="url" name="deployedLinks" value={currentDeployed} onChange={(event) => setCurrentDeployed(event.target.value)} />
+
+                    <button type='button' onClick={handleAddDeployedLinks}>Add Link</button>
                 </div>
                 <ul>
-                    {formData.githubUrl.map((url,index)=>(
+                    {formData.deployedLinks.map((link, index) => (
                         <li key={index}>
-                            <span>{url}</span>
-                            <button onClick={()=> handleRemoveGithubUrl(index)}>Remove</button>
+                            <span>{link}</span>
 
+                            <button type='button' onClick={() => handleRemoveDeployedLinks(index)}>Remove Link</button>
                         </li>
                     ))}
                 </ul>
-               </div>
-                
 
-                <input type="url" name="deployedLinks" value={formData.deployedLinks} onChange={handleChange} />
+                Skills:
+                <select name="skills" multiple value={formData.skills} onChange={handleSkills}>
+                    {skillsOptions.map((skill) => (
+                        <option key={skill} value={skill}>{skill}</option>
+                    ))}
+                </select>
 
-
-                <input type="text" name="skills" value={formData.skills} onChange={handleChange}
-                
-                />
                 <div>
-                    {/* <button onClick={()=> window.history.back()}>Back</button> */}
-                    <button type="submit">Submit</button>
+                    <button type="submit">Save Profile</button>
                 </div>
             </form>
         </div>

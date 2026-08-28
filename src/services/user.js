@@ -6,7 +6,7 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`
 //update from me
 const show = async(userId)=>{
     try {
-        const res = await fetch(`${BASE_URL}/users/${userId}`,{
+        const res = await fetch(`${BASE_URL}/user/${userId}`,{
             method: 'GET',
             headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},
         })
@@ -15,19 +15,17 @@ const show = async(userId)=>{
             console.log(data.err)
             throw new Error(data.err)
         }
-
         return data
         
     } catch (error) {
-        throw new Error(data.error)
-        
+        throw new Error(data.error) 
     }
 }
 
 
 const update = async(userId, formData)=>{
 try {
-    const res = await fetch(`${BASE_URL}/users/${userId}`,{
+    const res = await fetch(`${BASE_URL}/user/${userId}`,{
             method: 'PUT',
             headers:{
                 'Content-Type':'application/json',
@@ -41,18 +39,16 @@ try {
             console.log(data.err)
             throw new Error(data.err)
         }
-
         return data
     
-} catch (error) {
+    } catch (error) {
       throw new Error(data.error)
-}    
-
+    }    
 }
 
 const deleteGithubLink = async(userId, githbUrl)=>{
     try {
-        const res = await fetch(`${BASE_URL}/users/${userId}/github`,{
+        const res = await fetch(`${BASE_URL}/user/${userId}/github`,{
             method: 'DELETE',
             headers:{
                   'Content-Type':'application/json',

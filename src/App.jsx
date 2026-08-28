@@ -19,6 +19,9 @@ import DeveloperList from "./pages/BusinessOwner/DeveloperList"
 import * as DevService from './services/developers'
 import DeveloperDetails from "./pages/BusinessOwner/DeveloperDetails"
 import Requests from "./pages/Developer/Requests"
+import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
+import * as userService from './services/user'
+import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -62,6 +65,22 @@ const App = () => {
     }
     fetchDevelopers()
   }, [])
+  
+  useEffect(() => {
+      const fetchuserData = async () => {
+        if(user?._id){
+          try {
+            const fullUser = await userService.show(user._id)
+            setUser(fullUser)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      }
+      fetchuserData()
+    }, [])
+
+    const navigate=useNavigate()
 
   return (
     <div>
@@ -87,7 +106,15 @@ const App = () => {
           <Route path='/requests' element={developer ? <Requests proposals={proposals} setProposals={setProposals} user={user} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
 
-        </Routes>
+        <Route path='/projectProposal' element={<ProposalList proposals={proposals} />}/>
+        <Route path='/projectProposal/:projectProposalId' element={<ProposalDetails proposals={proposals} />} />
+
+        <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser}/>}/>
+        {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}
+
+
+        <Route path='/business-owner/profile' element={<ProfileDetailsBus user={user} setUser={setUser} />} />
+      </Routes>
       </main>
     </div>
   )
