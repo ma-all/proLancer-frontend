@@ -80,8 +80,6 @@ const App = () => {
       fetchuserData()
     }, [])
 
-    // const navigate=useNavigate()
-
   return (
     <div>
       <Nav user={user} setUser={setUser} />
