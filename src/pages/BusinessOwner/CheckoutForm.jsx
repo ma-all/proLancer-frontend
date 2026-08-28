@@ -1,7 +1,7 @@
-import { CardElement, useElements } from "@stripe/react-stripe-js"
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { useState } from "react"
 
-const checkoutForm = (props) => {
+const CheckoutForm = (props) => {
 
     const stripe = useStripe()
 
@@ -41,4 +41,4 @@ const checkoutForm = (props) => {
     )
 }
 
-export default checkoutForm
+export default CheckoutForm

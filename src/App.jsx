@@ -105,7 +105,7 @@ const App = () => {
           <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
 
         <Route path='/projectProposal' element={<ProposalList proposals={proposals} />}/>
-        <Route path='/projectProposal/:projectProposalId' element={<ProposalDetails proposals={proposals} />} />
+        <Route path='/projectProposal/:projectProposalId' element={<ProposalDetails proposals={proposals} user={user} />} />
 
         <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser}/>}/>
         {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}

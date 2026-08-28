@@ -26,15 +26,15 @@ const ProposalDetails = (props) => {
         return <p>Loading Proposal..</p>
     }
     
-    const currentUserId = (props.user?._id || props.user)?.toString()
+    const currentUserId = (props.user?._id || props.user?.id || props.user)?.toString()
     
-    const ownerId = (proposal.businessOwner?._id || proposal.businessOwner)?.toString()
+    const ownerId = (proposal.businessOwner?._id || proposal.businessOwner?.id || proposal.businessOwner)?.toString()
 
-    const isBusinessOwner = currentUserId === ownerId
+    const isBusinessOwner = Boolean(currentUserId && ownerId && currentUserId === ownerId) 
 
-    const isAccepted = proposal.status === 'Accepted'
+    const isAccepted = proposal.status?.toLowerCase() === 'accepted'
 
-    const isUnpaid = proposal.paymentStatus === 'Unpaid' || !proposal.paymentStatus
+    const isUnpaid = proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid' 
 
     const handlePayment = async () => {
         try {
@@ -43,7 +43,7 @@ const ProposalDetails = (props) => {
             if (data.clientSecret) {
                 setClientSecret(data.clientSecret)
                 setShowPayment(true)
-            } else if (data.erro) {
+            } else if (data.error) {
                 setErrorMessage(data.error)
             }
         } catch (error) {
