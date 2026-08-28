@@ -30,8 +30,10 @@ const checkoutForm = (props) => {
     }
 
     return (
-        <>
-        </>
+        <form onSubmit={handleSubmit}>
+            <CardElement />
+            <button type='submit' disabled={!stripe}> {processing ? 'Processing Payment..' : 'Pay Now'}</button>
+        </form>
     )
 }
 
