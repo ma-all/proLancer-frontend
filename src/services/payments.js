@@ -20,6 +20,26 @@ const create = async (projectProposalId) => {
     }
 }
 
+const confirm = async (projectProposalId, paymentId) => {
+    try {
+        const res = await fetch (`${BASE_URL}/confirmPayment`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(projectProposalId, paymentId)
+        })
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error || 'Payment confirmation failed')
+        }
+        return data
+    } catch (error) {
+        throw new Error(data.error)
+    }
+}
+
 export {
-    create,
+    create, confirm, 
 }
