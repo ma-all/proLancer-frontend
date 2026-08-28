@@ -6,6 +6,7 @@ const ProposalList = (props) => {
 
     const currentUserId = (props.user?.id || props.user?.id || props.user)?.toString()
 
+    //keeping this here because i might need it later
     const proposals = props.proposals?.filter((proposal) => {
         const ownerId = (proposal.businessOwner?._id || proposal.businessOwner?.id || proposal.businessOwner)?.toString()
         return ownerId === currentUserId
@@ -14,7 +15,7 @@ const ProposalList = (props) => {
     return (
         <div className='proposal-list-container'>
             {props.proposals.map((proposal) =>
-                <div key={proposal} className='proposal-list-card'>
+                <div key={proposal._id} className='proposal-list-card'>
                     <p className='proposal-list-name'>{proposal.name}</p>
                     {/* <p className='proposal-list-budget'>{proposal.budget}</p> */}
 

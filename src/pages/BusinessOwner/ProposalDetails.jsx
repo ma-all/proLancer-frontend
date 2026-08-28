@@ -11,8 +11,6 @@ const ProposalDetails = (props) => {
 
     const { projectProposalId } = useParams()
 
-    const navigate = useNavigate()
-
     const [clientSecret, setClientSecret] = useState('')
 
     const [showPayment, setShowPayment] = useState(false)
@@ -34,7 +32,7 @@ const ProposalDetails = (props) => {
 
     const isAccepted = proposal.status?.toLowerCase() === 'accepted'
 
-    const isUnpaid = proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid' 
+    const isUnpaid = !proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid' 
 
     const handlePayment = async () => {
         try {
@@ -47,20 +45,22 @@ const ProposalDetails = (props) => {
                 setErrorMessage(data.error)
             }
         } catch (error) {
-            setErrorMessage('Failed to navigate to payment')
+            setErrorMessage('Failed to navigate to payment', error.message)
         }
     }
 
     const handlePaymentDone = async (paymentId) => {
         try {
             const updatedStatus = await paymentService.confirm(proposal._id, paymentId)
-            console.log('did it work??')
             setShowPayment(false)
+            if(props.setProposals) {
+                props.setProposals((prev) => 
+                prev.map((pro) =>
+                pro._id === updatedStatus._id ? updatedStatus : pro))
+            }
             if (props.onUpdateStatus) {
                 props.onUpdateStatus(updatedStatus)
-            } else {
-                navigate('/projectProposal')
-            }
+            } 
         } catch (error) {
             console.log(error)
         }

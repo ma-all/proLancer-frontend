@@ -8,7 +8,7 @@ const create = async (projectProposalId) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(projectProposalId)
+            body: JSON.stringify({ projectProposalId })
         })
         const data = await res.json()
         if (!res.ok) {
@@ -28,7 +28,7 @@ const confirm = async (projectProposalId, paymentId) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(projectProposalId, paymentId)
+            body: JSON.stringify({ projectProposalId, paymentId })
         })
         const data = await res.json()
         if (!res.ok) {
