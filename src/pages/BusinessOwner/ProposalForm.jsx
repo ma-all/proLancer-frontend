@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams, useLocation } from 'react-router'
 import * as proposalService from '../../services/proposal'
 
 const ProposalForm = (props) => {
 
     const navigate = useNavigate()
 
+    const location = useLocation()
+
     const { developerId } = useParams()
 
+    const selectDevId = location.state?.targetDeveloperId || developerId || ''
+
     const initialState = {
-        username: developerId,
+        developer: developerId || '',
         name: '',
         description: '',
         budget: '',
@@ -18,17 +22,40 @@ const ProposalForm = (props) => {
         status: 'Pending',
     }
 
+
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState('')
 
-    const handleChange = async (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value })
+    useEffect(() => {
+        if (selectDevId) {
+            setFormData((prev) => ({
+                ...prev, 
+                developer: selectDevId
+            }))
+        }
+    }, [selectDevId])
+
+    const handleChange = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        if (!formData.developer) {
+            setMessage('Please select a developer.')
+            return
+        }
         try {
-            const newProposal = await proposalService.create(formData)
+            const payload = {
+                ...formData,
+                budget: Number(formData.budget)
+            }
+            const newProposal = await proposalService.create(payload)
+            if (props.setProposals){
+                props.setProposals((prev) => 
+                [...prev, newProposal])
+            }
             setFormData(initialState)
             navigate('/projectProposal')
         } catch (error) {

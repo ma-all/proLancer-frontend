@@ -10,6 +10,10 @@ const ProposalDetails = (props) => {
     const proposal = props.proposals?.find((pro) =>
         pro._id === projectProposalId)
 
+    if (!proposal) {
+        return <p>Loading</p>
+    }
+
     return (
         <div className='proposal-details-container'>
             <div className='proposal-details-card'>

@@ -124,7 +124,7 @@ const deleteSkill = async(userId, skill)=>{
 }
 
 export {
-    show,update,deleteGithubLink,deleteDeployedLink, deleteSkill
+    show,update,deleteGithubLink,deleteDeployedLink, deleteSkill, 
 }
 
 
