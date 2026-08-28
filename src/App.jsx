@@ -80,7 +80,7 @@ const App = () => {
       fetchuserData()
     }, [])
 
-    const navigate=useNavigate()
+    // const navigate=useNavigate()
 
   return (
     <div>
