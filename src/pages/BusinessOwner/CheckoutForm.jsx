@@ -9,12 +9,14 @@ const checkoutForm = (props) => {
 
     const [processing, setProcessing] = useState(false)
 
+    const [errorMessage, setErrorMessage] = useState('')
+
     const handleSubmit = async (event) => {
         event.preventDefault()
-
         if (!stripe || !elements)
             return
-
+        setProcessing(true)
+        setErrorMessage('')
         const result = await stripe.confirmCardPayment(props.clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
@@ -22,6 +24,7 @@ const checkoutForm = (props) => {
         })
 
         if (result.error) {
+            setErrorMessage(result.error.message)
             setProcessing(false)
         } else if (result.paymentIntent.status === 'succeeded') {
             await props.onPaymentSuccess(result.paymentIntent.id)
@@ -32,7 +35,8 @@ const checkoutForm = (props) => {
     return (
         <form onSubmit={handleSubmit}>
             <CardElement />
-            <button type='submit' disabled={!stripe}> {processing ? 'Processing Payment..' : 'Pay Now'}</button>
+            {errorMessage && <p>{errorMessage}</p>}
+            <button type='submit' disabled={!stripe || processing} > {processing ? 'Processing Payment..' : 'Pay Now'}</button>
         </form>
     )
 }
