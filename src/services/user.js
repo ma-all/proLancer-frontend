@@ -15,12 +15,10 @@ const show = async(userId)=>{
             console.log(data.err)
             throw new Error(data.err)
         }
-
         return data
         
     } catch (error) {
-        throw new Error(data.error)
-        
+        throw new Error(data.error) 
     }
 }
 
@@ -41,13 +39,11 @@ try {
             console.log(data.err)
             throw new Error(data.err)
         }
-
         return data
     
-} catch (error) {
+    } catch (error) {
       throw new Error(data.error)
-}    
-
+    }    
 }
 
 const deleteGithubLink = async(userId, githbUrl)=>{

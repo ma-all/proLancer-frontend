@@ -18,7 +18,7 @@ const Nav = (props) => {
                     </li>
                     {props.user.role === 'Business Owner'&&(
                         <li>
-                            <link to="/business-owner/profile">profile</link>
+                            {/* <link to="/business-owner/profile">profile</link> */}
                         </li>
                     )}
 

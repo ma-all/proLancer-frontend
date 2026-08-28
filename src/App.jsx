@@ -21,6 +21,7 @@ import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
 
 
 import * as userService from './services/user'
+import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -61,7 +62,7 @@ const App = () => {
 
     useEffect(() => {
       const fetchuserData = async () => {
-        if(user?.id){
+        if(user?._id){
           try {
             const fullUser = await userService.show(user._id)
             setUser(fullUser)
@@ -70,7 +71,7 @@ const App = () => {
           }
         }
       }
-      fetchuserData
+      fetchuserData()
     }, [])
 
     const navigate=useNavigate()
@@ -94,6 +95,9 @@ const App = () => {
 
         <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser}/>}/>
         {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}
+
+
+        <Route path='/business-owner/profile' element={<ProfileDetailsBus user={user} setUser={setUser} />} />
       </Routes>
       </main>
     </div>
