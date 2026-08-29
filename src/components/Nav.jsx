@@ -38,6 +38,10 @@ const Nav = (props) => {
                             {/* <li>
                                 <link to="/business-owner/profile">profile</link>
                             </li> */}
+
+                            <li>
+                             <Link to="/business-owner/profile">Profile</Link>
+                            </li>
                         </>
                     )}
 

@@ -8,6 +8,10 @@ import CheckoutForm from './CheckoutForm'
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 const ProposalDetails = (props) => {
+// i add this maybe i will remove it 
+    const navigate = useNavigate()
+
+
 
     const { projectProposalId } = useParams()
 
@@ -33,6 +37,9 @@ const ProposalDetails = (props) => {
     const isAccepted = proposal.status?.toLowerCase() === 'accepted'
 
     const isUnpaid = !proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid' 
+
+    //for the paid
+    const isPaid = proposal.paymentStatus?.toLowerCase() === 'paid'
 
     const handlePayment = async () => {
         try {
@@ -96,11 +103,21 @@ const ProposalDetails = (props) => {
                         <p>{proposal.theme}</p>
                     </div>
                 </div>
+
+                
+                {isPaid && (
+                    <div className='proposal-receipt-section'>
+                        <p>Payment has been completed for this proposal. </p>
+                        <button onClick={() => navigate(`/receipt/${proposal._id}`)}>View Receipt</button>
+                    </div>
+                )}
+
+
                 {isBusinessOwner && isAccepted && isUnpaid && (
                     <div>
                         <p>Your project proposal has been accepted! Please proceed to payment to start website development.</p>
                         {!showPayment ? (
-                            <button onClick={handlePayment}> Pay ${proposal.budget} Now </button>
+                            <button onClick={handlePayment}> Pay BHD{proposal.budget} Now </button>
                         ) : (
                             clientSecret && (
                                 <Elements stripe={stripePromise} options={{ clientSecret }}>
