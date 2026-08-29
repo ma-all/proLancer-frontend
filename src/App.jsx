@@ -19,7 +19,7 @@ import Requests from "./pages/Developer/Requests"
 import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
 import * as userService from './services/user'
 import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
-
+import ReceiptDetails from "./pages/BusinessOwner/ReceiptDetails"
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
   if (!token) 
@@ -98,6 +98,11 @@ const App = () => {
           <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser} />} />
           {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}
           <Route path='/business-owner/profile' element={<ProfileDetailsBus user={user} setUser={setUser} />} />
+
+
+          {/* for the paid */}
+       <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
+        
         </Routes>
       </main>
     </div>
