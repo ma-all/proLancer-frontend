@@ -12,11 +12,11 @@ const ReceiptDetails = (props) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const loadReceiptData = async () => {
+        const loadReceipt = async () => {
        
-         const foundInProps = props.proposals?.find((pro) => pro._id === currentId)
-            if (foundInProps) {
-                setProposal(foundInProps)
+         const foundProps = props.proposals?.find((pro) => pro._id === currentId)
+            if (foundProps) {
+                setProposal(foundProps)
                 setLoading(false)
                 return
             }
@@ -32,7 +32,7 @@ const ReceiptDetails = (props) => {
             }
         }
 
-        loadReceiptData()
+        loadReceipt()
     }, [currentId, props.proposals])
 
     if (loading) return <p>Loading Receipt...</p>
