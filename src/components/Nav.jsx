@@ -28,16 +28,13 @@ const Nav = (props) => {
                             </li>
 
                             <li>
+                                {/* //need to change this link */}
                                 <Link to='/projectProposal'>Projects</Link>
                             </li>
 
                             <li>
-                                <Link to='/projectProposal'>Chats</Link>
+                                <Link to='/chatBusinessOwner'>Chats</Link>
                             </li>
-
-                            {/* <li>
-                                <link to="/business-owner/profile">profile</link>
-                            </li> */}
 
                             <li>
                              <Link to="/business-owner/profile">Profile</Link>
@@ -57,11 +54,12 @@ const Nav = (props) => {
                             </li>
 
                             <li>
-                                <Link to='/projectProposal'>Projects</Link>
+                                {/* need to change this link */}
+                                <Link to='/projectProposal'>Projects</Link> 
                             </li>
 
                             <li>
-                                <Link to='/projectProposal'>Chats</Link>
+                                <Link to='/chatDeveloper'>Chats</Link>
                             </li>
 
                             {/* <li>

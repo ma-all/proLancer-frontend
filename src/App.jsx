@@ -20,9 +20,12 @@ import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
 import * as userService from './services/user'
 import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 import ReceiptDetails from "./pages/BusinessOwner/ReceiptDetails"
+import ChatsDev from './pages/Developer/ChatsDev'
+import ChatsBus from './pages/BusinessOwner/ChatsBus'
+
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
-  if (!token) 
+  if (!token)
     return null
   const decoded = JSON.parse(atob(token.split('.')[1])).payload
   return decoded.payload || decoded.user || decoded
@@ -101,8 +104,12 @@ const App = () => {
 
 
           {/* for the paid */}
-       <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
-        
+          <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
+
+          <Route path='/chatDeveloper' element={<ChatsDev user={user} />} />
+          
+          <Route path='chatBusinessOwner' element={<ChatsBus user={user} />} />
+
         </Routes>
       </main>
     </div>
