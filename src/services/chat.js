@@ -17,7 +17,24 @@ const index = async () => {
     }
 }
 
+const show = async (chatId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${chatId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+        })
+        const data = await res.json()
+        if (!res.ok) {
+            throw new Error(data.error)
+        }
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export {
-    index,
+    index, show,
 }
