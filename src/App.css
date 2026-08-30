@@ -850,6 +850,146 @@ button:disabled {
 
 
 
+.profile-details-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "PT Serif Caption", serif;
+  box-sizing: border-box;
+}
+
+
+.profile-details-card {
+  width: 100%;
+  max-width: 680px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+
+.profile-details-card .profile-details-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  
+}
+
+.profile-details-card .profile-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+ 
+}
+
+
+.profile-details-card .category-badge {
+  display: inline-block;
+  color: #5f7fd1;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 6px 16px;
+ 
+}
+
+.profile-details-card .description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.profile-details-card .section-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #64748b;
+  margin: 0;
+}
+
+.profile-details-card .description-text {
+  font-size: 1.05rem;
+  color: #334155;
+  background-color: #f8fafc;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  margin: 0;
+}
+
+
+.profile-details-card .profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.profile-details-card .btn-secondary {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-details-card .btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+
+.profile-details-card .btn-primary {
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+  transition: all 0.2s ease;
+}
+
+.profile-details-card .btn-primary:hover {
+  background-color: #334155;
+}
+
+.profile-loading-card {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+
+@media (max-width: 640px) {
+  .profile-details-card {
+    padding: 28px 20px;
+  }
+
+  .profile-details-card .profile-actions {
+    flex-direction: column-reverse;
+  }
+
+  .profile-details-card .btn-secondary,
+  .profile-details-card .btn-primary {
+    width: 100%;
+  }
+}
 
 
 
