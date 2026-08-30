@@ -33,7 +33,7 @@ const Nav = (props) => {
                             </li>
 
                             <li>
-                                <Link to='/chatBusinessOwner'>Chats</Link>
+                                <Link to='/chat'>Chats</Link>
                             </li>
 
                             <li>
@@ -59,7 +59,7 @@ const Nav = (props) => {
                             </li>
 
                             <li>
-                                <Link to='/chatDeveloper'>Chats</Link>
+                                <Link to='/chat'>Chats</Link>
                             </li>
 
                             {/* <li>

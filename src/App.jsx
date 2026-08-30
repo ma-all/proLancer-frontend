@@ -20,8 +20,7 @@ import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
 import * as userService from './services/user'
 import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 import ReceiptDetails from "./pages/BusinessOwner/ReceiptDetails"
-import ChatsDev from './pages/Developer/ChatsDev'
-import ChatsBus from './pages/BusinessOwner/ChatsBus'
+import Chats from './Chats'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -106,9 +105,7 @@ const App = () => {
           {/* for the paid */}
           <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
 
-          <Route path='/chatDeveloper' element={<ChatsDev user={user} />} />
-          
-          <Route path='chatBusinessOwner' element={<ChatsBus user={user} />} />
+          <Route path='/chat' element={<Chats user={user} />} />
 
         </Routes>
       </main>
