@@ -5,7 +5,7 @@ import * as chatService from './services/chat'
 
 const Chats = (props) => {
 
-    const currentUserId = props.user?._id || props.user?.payload?._id
+    const currentUserId = props.user?._id || props.user?.payload?._id || props.user?.d
 
     const { chatId } = useParams()
 
@@ -20,6 +20,7 @@ const Chats = (props) => {
     useEffect(() => {
         const fetchChat = async () => {
             if (!chatId)
+                // setLoading(false)
                 return
             try {
                 setLoading(true)
@@ -37,6 +38,8 @@ const Chats = (props) => {
     }, [chatId])
 
     useEffect(() => {
+        if (!chatId)
+            return
         const handleConnect = () => {
             setIsConnected(true)
             socket.emit('join_chat', chatId)
@@ -46,9 +49,10 @@ const Chats = (props) => {
             setIsConnected(false)
         }
 
-        const handleChatMessage = (newMessage) => {
-            const senderId = newMessage.senderId?._id
-            if (senderId !== currentUserId) {
+        const handleChatMessage = (incomingData) => {
+            const newMessage = incomingData.savedMessage || incomingData
+            const senderId = newMessage.senderId?._id || newMessage.senderId
+            if (String(senderId) !== String(currentUserId)) {
                 setMessages((previousMessages) => {
                     return [...previousMessages, newMessage]
                 })
@@ -69,7 +73,7 @@ const Chats = (props) => {
             socket.off('connect', handleConnect)
             socket.off('disconnect', handleDisconnect)
             socket.off('chat message', handleChatMessage)
-            socket.disconnect()
+            // socket.disconnect()
         }
     }, [chatId, currentUserId])
 
@@ -80,7 +84,7 @@ const Chats = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const trimmedMsg = formData.trim()
-        if (!formData)
+        if (!trimmedMsg || !chatId)
             return
         try {
             const savedMessage = await chatService.sendMessage(chatId, trimmedMsg)
@@ -119,11 +123,11 @@ const Chats = (props) => {
 
                 {messages.map((message) => {
                     const senderId = message.senderId?._id || message.senderId
-                    const myChat = senderId === currentUserId
+                    const myChat = String(senderId) === String(currentUserId)
                     return (
                         <div key={message._id}>
                             <span>
-                                {myChat ? 'You' : (message.senderId?.username || 'User')}
+                                {myChat ? 'You' : (typeof message.senderId === 'object' ? message.senderId?.username : 'User')}
                             </span>
                             <div>{message.msg}</div>
                         </div>

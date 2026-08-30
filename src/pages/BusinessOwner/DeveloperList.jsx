@@ -12,9 +12,9 @@ const DeveloperList = (props) => {
         })
     }
 
-    // const handleViewDetails = (developerId) => {
-    //     navigate('/') //i need to add the route to the developer details, and create its page
-    // }
+    const handleViewDetails = (developerId) => {
+        navigate(`/developer/${developerId}`)
+    }
 
     return (
         <>
@@ -27,7 +27,7 @@ const DeveloperList = (props) => {
                     <br />
 
                     <button onClick={() => handleSendProposal(dev._id)}>Send Proposal</button>
-                    {/* <button onClick={() => handleViewDetails(dev._id)}>View Details</button> */}
+                    <button onClick={() => handleViewDetails(dev._id)}>View Details</button>
                 </div>
             ))}
             </div>

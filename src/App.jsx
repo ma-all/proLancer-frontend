@@ -97,14 +97,15 @@ const App = () => {
           <Route path='/requests' element={developer ? <Requests proposals={proposals} setProposals={setProposals} user={user} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal' element={<ProposalList proposals={proposals} />} />
-          <Route path='/developer/profile' element={<ProfileDetailsDev user={user} setUser={setUser} />} />
-          {/* <Route path='/profile/details' element={<profileDetailsDev user={user} handleEdit={()=> navigate('/profile')}/>}/>  */}
+          <Route path='/business-owner/viewDev' element={<ProfileDetailsDev user={user} setUser={setUser} />} />
+          <Route path='/developer/:developerId' element={<DeveloperDetails developers={allDevelopers} user={user} />} /> 
           <Route path='/business-owner/profile' element={<ProfileDetailsBus user={user} setUser={setUser} />} />
 
 
           {/* for the paid */}
           <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
 
+          <Route path='/chat/:chatId' element={<Chats user={user} />} />
           <Route path='/chat' element={<Chats user={user} />} />
 
         </Routes>

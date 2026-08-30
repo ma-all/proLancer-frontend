@@ -77,5 +77,5 @@ const sendMessage = async (chatId, msg) => {
 }
 
 export {
-    index, show, sendMessage,
+    index, show, sendMessage, create
 }
