@@ -90,7 +90,7 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-.proposal-details-container, .proposal-form-container {
+/* .proposal-details-container, .proposal-form-container {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -143,7 +143,7 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
+} */
 
 .proposal-form-card {
   box-sizing: border-box;
@@ -265,3 +265,192 @@ button:disabled {
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 } */
+
+
+
+
+.receipt-container{
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 32px;
+  background-color: #D7D7D6;
+  border-radius: 16px;
+  font-family:"PT Serif Caption", serif ;
+  color: #272B36;
+  box-sizing: border-box;
+
+}
+
+
+.receipt-container h2{
+  margin: 0 0 16px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color:#595D66 ;
+  text-align: center;
+}
+
+.receipt-container hr{
+  border: 0;
+  margin: 0 0 24px 0;
+}
+
+.receipt-container p{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+  color: #272B36;
+}
+
+.receipt-container p strong {
+  font-weight: 600;
+  color: #272B36;
+}
+
+.receipt-container p:nth-of-type(3){
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #595D66;
+}
+
+.receipt-container p:nth-of-type(4){
+  color: #D7D7D6;
+  font-weight: 600;
+  background-color: aliceblue;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-left: auto;
+}
+
+
+.receipt-container button{
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px 20px;
+  background-color: #595D66;
+  color: #D7D7D6;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.receipt-container button:hover{
+  background-color:#272B36;
+
+}
+
+
+
+
+
+
+
+.proposal-details-container{
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: "PT Serif Caption", serif;
+
+}
+
+.proposal-details-card{
+  background-color: #ffff;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid #e0e7ff;
+}
+
+.proposal-details-top{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.proposal-details-top h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1e1b4b;
+}
+
+.proposal-details-top p {
+  margin: 0;
+  font-size: 0.95rem;
+  color:#3d7566;
+  font-weight: 500;
+
+}
+
+.proposal-details-top hr{
+  border-top: 1px solid #e2e8f0;
+  margin: 24px 0;
+}
+
+
+.proposal-details-rest{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.proposal-details{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color:#0f172a;
+}
+
+.proposal-details p{
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #0f172a;
+}
+
+.proposal-receipt-section{
+  margin-top: 24px;
+  padding: 20px;
+  background-color: #ecfdf5;
+  border: 1px solid #e7f3d0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+}
+
+.proposal-receipt-section p {
+  margin: 0;
+  color: #047857;
+  font-weight: 600;
+}
+
+
+.proposal-receipt-section button{
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+
+.proposal-receipt-section button:hover{
+  background-color: #059669;
+}
+
+.proposal-details-card button{
+  color: #ffff;
+  padding: 12px 24pv;
+  border-radius: 8px;
+}
