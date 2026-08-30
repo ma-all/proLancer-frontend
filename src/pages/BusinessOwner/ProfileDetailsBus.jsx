@@ -14,7 +14,9 @@ const ProfileDetailsBus = (props) => {
     console.log('what is the error', businessOwner)
 
     if (!businessOwner) {
+        <div className="profile-details-wrapper">
         return <p>Loading Profile....</p>
+        </div>
     }
 
     return (
