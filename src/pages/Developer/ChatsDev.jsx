@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import socket from '../../socket'
+import { useParams } from 'react-router'
 
 const ChatsDev = (props) => {
+
+    const { chatId } = useParams()
 
     const [isConnected, setIsConnected] = useState(socket.connected)
 
