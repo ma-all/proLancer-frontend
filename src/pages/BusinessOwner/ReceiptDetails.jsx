@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import * as paymentService from '../../services/payments' 
 
+
 const ReceiptDetails = (props) => {
     const navigate = useNavigate()
    
