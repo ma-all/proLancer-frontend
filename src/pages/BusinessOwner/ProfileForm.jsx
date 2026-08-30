@@ -40,22 +40,28 @@ const ProfileForm = (props) => {
     }
 
     return (
-        <div >
-            <h2>Profile</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="profile-form-wrapper" >
+            <div className="profile-card">
+            <h2 className="profile-heading">Profile</h2>
+            <form onSubmit={handleSubmit} className="profile-form">
+                <div className="input-group">
                 <label>Description</label>
                 <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} />
-
-                <p>category</p>
-                <div >
+                </div>
+                <div className="category-group">
+                <p className="category-lable">category</p>
+                <div className="category-pills" >
                     {CATEGORIES.map((cate) => (
                         <button key={cate} type="button" className={formData.businessCategory === cate ? 'active' : ''} onClick={() => handleCategorySelect(cate)}>
                             {cate}
                         </button>
                     ))}
+                    </div>
                 </div>
-                    <button type='submit'>Save Profile</button>
+                    <button className="save-profile-btn" type='submit'>Save Profile</button>
             </form>
+            </div>
+            
         </div>
     )
 
