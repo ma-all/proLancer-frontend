@@ -1468,3 +1468,159 @@ button:disabled {
   height: 100%;
   color: #888;
 }
+
+
+.dev-details-container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "PT Serif Caption", serif;
+}
+
+
+.dev-details-card {
+  width: 700px;
+  max-width: 950px; 
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px;
+ 
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.dev-header {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 36px;
+}
+
+.dev-header::before {
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: 4px;
+
+}
+
+.dev-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+
+.dev-section {
+  margin-bottom: 36px;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid #edf2f7;
+}
+
+.section-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #272B36;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.description-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+.empty-msg {
+  font-size: 0.95rem;
+  color: #1c1d1e;
+  font-style: italic;
+  margin: 0;
+}
+
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.link-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.link-item:hover {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.link-url {
+  color: #272B36;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+
+.actions-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px dashed #e2e8f0;
+}
+
+.btn-back {
+  background: #ffffff;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+ 
+}
+
+.btn-back:hover {
+  background: #f1f5f9;
+ 
+}
+
+.btn-message {
+  background: var(--grey);
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+ 
+}
+
+
+
+
+
+
+
