@@ -42,13 +42,18 @@ const ProjectsDetails = (props) => {
         return <p>Loading Projects..</p>
 
     return (
-        <div>
-            <div>
-                <h2>{project.name}</h2>
-                <p>{project.paymentStatus || 'Unpaid'}</p>
-                <p>Current Status: {project.status}</p>
-                <hr />
-                <div>
+        <div className='project-detail-container'>
+            <div className='detail-header-card'>
+               <div className='header-top'> 
+                <h2 className='project-title'>{project.name}</h2>
+                {/* <p>{project.paymentStatus || 'Unpaid'}</p> */}
+                <span className={`payment-status ${project.paymentStatus?.toLowerCase() || 'unpaid'}`}>
+                 {project.paymentStatus || 'Unpaid'}
+                 </span>
+                 </div>
+                <p className='current-status'>Current Status: <span className='status-highlight'>{project.status}</span></p>
+                <hr  className='card-divider'/>
+                <div className='status-updater'>
                     Update Status:
                     <select id='selectStatus' value={project.status || 'Accepted'} onChange={handleChangeStatus}>
                         <option value='Accepted'>Accepted</option>
@@ -59,13 +64,29 @@ const ProjectsDetails = (props) => {
             </div>
 
             <hr />
-            <h3>Project Details</h3>
-            <p>{project.description}</p>
-            <p>{project.budget}</p>
-            <p>{project.features}</p>
-            <p>{project.theme}</p>
+            <div className='detail-content-card'>
+            <h3 className='section-title'>Project Details</h3>
+            <p className='project-description'>{project.description}</p>
 
-            <button onClick={handleSendChat}>Send Message</button>
+            <div className='details-grid'>
+        <div className='detail-item'>
+           <span className='detail-label'>Budget</span>
+          <span className='detail-value project-budget'>BHD {project.budget}</span>
+        </div>
+
+           <div className='detail-item'>
+          <span className='detail-label'>Theme</span>
+          <span className='detail-value'>{project.theme}</span>
+        </div>
+
+        <div className='detail-item full-width'>
+          <span className='detail-label'>Features</span>
+          <span className='detail-value'>{project.features}</span>
+        </div>
+      </div>
+
+            <button className='btn-send-message' onClick={handleSendChat}>Send Message</button>
+        </div>
         </div>
     )
 }

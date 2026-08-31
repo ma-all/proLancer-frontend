@@ -18,18 +18,21 @@ const ProjectsList = (props) => {
     console.log(acceptedProjects)
 
     return (
-        <>
+        <div className='projects-container' >
             {acceptedProjects.length === 0 ? (
-                <p>No projects available yet</p>
+                <p className='n0-projects'>No projects available yet</p>
             ) : (
                 acceptedProjects.map((project) => (
-                    <div key={project._id}>
+                    <div key={project._id} className='project-card'>
                         <h3>{project.name}</h3>
-                        <p>{project.budget}</p>
-                        <p>{project.status}</p>
+                        <div className='project-me'>
+                        <p className='project-budget'>{project.budget}</p>
+                        <p className='project-status'>{project.status}</p>
+                        </div>
 
-                        <Link to={`/projectslist/${project._id}`}>
-                            <button type='submit'> View Details</button>
+                        <Link to={`/projectslist/${project._id}`} className='project-link'>
+                        
+                            <button  type='submit'> View Details</button>
                         </Link>
                     </div>
                 ))
@@ -37,7 +40,7 @@ const ProjectsList = (props) => {
 
 
 
-        </>
+        </div>
     )
 }
 
