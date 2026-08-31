@@ -349,7 +349,7 @@ button:disabled {
 
 
 .proposal-details-container{
-  max-width: 680px;
+  width: 680px;
   margin: 40px auto;
   padding: 0 16px;
   font-family: "PT Serif Caption", serif;
@@ -990,6 +990,215 @@ button:disabled {
     width: 100%;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.signup-wrapper {
+
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "PT Serif Caption", serif;
+  box-sizing: border-box;
+}
+
+
+.signup-wrapper .signup-card {
+  width: 100%;
+  max-width: 520px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 44px 40px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+/* Header Area */
+.signup-card .signup-header {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.signup-card .signup-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.signup-card .signup-message {
+  font-size: 0.925rem;
+  color: #ef4444;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin: 12px 0 0 0;
+}
+
+/* Form Vertical Stack */
+.signup-card .signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.signup-card .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Input Labels */
+.signup-card .form-group label,
+.signup-card .form-group .group-title {
+  display: block;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+/* Standard Inputs */
+.signup-card .form-group input[type="text"],
+.signup-card .form-group input[type="email"],
+.signup-card .form-group input[type="password"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f8fafc;
+  font-size: 0.975rem;
+  color: #0f172a;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signup-card .form-group input:focus {
+  background-color: #ffffff;
+  border-color: #391589;
+  box-shadow: 0 0 0 4px rgba(12, 39, 78, 0.15);
+}
+
+/* Interactive Role Selection Grid */
+.signup-card .role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.signup-card .role-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  background-color: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+
+.signup-card .role-card:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+/* Hide raw radio inputs completely */
+.signup-card .role-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.signup-card .role-card .role-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Active Selected Role Card */
+.signup-card .role-card.selected {
+  background-color: #dcfce7;
+  border-color: #16a34a;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+}
+
+.signup-card .role-card.selected .role-title {
+  color: #15803d;
+}
+
+/* Primary Action Button */
+/* .signup-card .actions {
+  margin-top: 10px;
+}
+
+.signup-card .submit-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+  transition: all 0.2s ease;
+}
+
+.signup-card .submit-btn:hover:not(:disabled) {
+  background-color: #16a34a;
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Disabled Button Styling */
+/* .signup-card .submit-btn:disabled {
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+} */ 
+
+/* Responsive Fitting
+@media (max-width: 640px) {
+  .signup-card {
+    padding: 32px 20px;
+  }
+  
+  .signup-card .role-selector {
+    grid-template-columns: 1fr;
+  }
+} */
 
 
 
