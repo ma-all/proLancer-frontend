@@ -608,7 +608,8 @@ button:disabled {
   border-top: 4px solid #cbd5e1; 
   border-radius: 16px;
   padding: 44px 36px 36px 36px;
-  min-height: 250px;
+  /* min-height: 250px; */
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1343,16 +1344,14 @@ button:disabled {
 }
 
 
-.stat-card.blue {
+.stat-card.color {
   background-color: #0f172a;
+  cursor: pointer;
 }
 
-.stat-card.teal {
-  background-color: #0f172a;
-}
-
-.stat-card.green {
-  background-color: #0f172a;
+.stat-card.color:hover {
+  background-color: #595D66;
+  cursor: pointer;
 }
 
 
