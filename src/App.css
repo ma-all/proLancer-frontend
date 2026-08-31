@@ -1310,6 +1310,79 @@ button:disabled {
   color: #0f172a;
 }
 
+.dashboard-container {
+  padding: 2rem;
+  width: 600px;
+  margin: 0 auto;
+  font-family:"PT Serif Caption", serif;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+
+  gap: 1.5rem;
+}
+
+
+.stat-card {
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+
+.stat-card.blue {
+  background-color: #0f172a;
+}
+
+.stat-card.teal {
+  background-color: #0f172a;
+}
+
+.stat-card.green {
+  background-color: #0f172a;
+}
+
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-box {
+  color: #f4f1f1;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+
+
+
+.stat-label {
+  margin: 1.25rem 0 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
 .chat-layout {
   display: flex;
   height: calc(100vh - 80px);
@@ -1617,10 +1690,5 @@ button:disabled {
   cursor: pointer;
  
 }
-
-
-
-
-
 
 
