@@ -20,6 +20,7 @@ import ProfileDetailsDev from "./pages/Developer/ProfileDetailsDev"
 import * as userService from './services/user'
 import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 import ReceiptDetails from "./pages/BusinessOwner/ReceiptDetails"
+import DevDashboard from './pages/Developer/DevDashboard'
 import Chats from './Chats'
 import ProjectsList from "./pages/Developer/ProjectsList"
 import ProjectsDetails from "./pages/Developer/ProjectDetails"
@@ -86,7 +87,7 @@ const App = () => {
       <Nav user={user} setUser={setUser} />
       <main className="app-main">
         <Routes>
-          <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
+          <Route path='/' element={user ? <DevDashboard user={user} /> : <Landing />} />
           <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
           <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
@@ -112,6 +113,9 @@ const App = () => {
 
           <Route path='/projectslist' element={<ProjectsList user={user} proposals={proposals} setProposals={setProposals}/>}/>
           <Route path='/projectslist/:projectlistId' element={<ProjectsDetails user={user} proposals={proposals}  setProposals={setProposals}/>} />
+<Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
+
+       {/* <Route path='/dashboardDev' element={<DevDashboard />} /> */}
 
 
         </Routes>

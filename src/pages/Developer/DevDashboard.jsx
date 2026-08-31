@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-// import { index } from '../../services/user'
+import {FolderOpenDot, ScrollText} from 'lucide-react'
 
-const Dashboard = (props) => {
+
+const DevDashboard = (props) => {
 
     const [allUsers, setAllUsers] = useState([])
 
@@ -22,9 +23,22 @@ const Dashboard = (props) => {
             <div className="stats-grid">
             <div className="stat-card blue">
             <div className="stat header">
-                <span className="icon-box"></span>
+                <span className="icon-box">
+                    <ScrollText size={25}/>
+                
+                </span>
                 </div>
+                <p className="stat-lable">Active Proposals</p>
                 </div>
+
+                <div className="stat-card teal">
+                <div className="stat-header">
+                    <span className="icon-box">
+                         <FolderOpenDot size={25}/>
+                    </span>
+                    </div>
+                    <p className="stat-lable">My Projects</p>
+                    </div>
             {allUsers.map((user) => (
                 <div className="card">
                     <header>
@@ -39,4 +53,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default Dashboard
+export default DevDashboard
