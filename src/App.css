@@ -1310,36 +1310,9 @@ button:disabled {
   color: #0f172a;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .dashboard-container {
   padding: 2rem;
-  max-width: 1200px;
+  width: 600px;
   margin: 0 auto;
   font-family:"PT Serif Caption", serif;
 }
