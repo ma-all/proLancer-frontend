@@ -992,21 +992,6 @@ button:disabled {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .signup-wrapper {
 
   width: 500px;
@@ -1030,7 +1015,6 @@ button:disabled {
   box-sizing: border-box;
 }
 
-/* Header Area */
 .signup-card .signup-header {
   margin-bottom: 32px;
   text-align: left;
@@ -1041,7 +1025,7 @@ button:disabled {
   font-weight: 800;
   color: #0f172a;
   margin: 0 0 8px 0;
-  letter-spacing: -0.02em;
+
 }
 
 .signup-card .signup-message {
@@ -1054,7 +1038,7 @@ button:disabled {
   margin: 12px 0 0 0;
 }
 
-/* Form Vertical Stack */
+
 .signup-card .signup-form {
   display: flex;
   flex-direction: column;
@@ -1068,19 +1052,16 @@ button:disabled {
   width: 100%;
 }
 
-/* Input Labels */
+
 .signup-card .form-group label,
 .signup-card .form-group .group-title {
   display: block;
   font-size: 0.825rem;
   font-weight: 700;
   color: #475569;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   margin-bottom: 8px;
 }
 
-/* Standard Inputs */
 .signup-card .form-group input[type="text"],
 .signup-card .form-group input[type="email"],
 .signup-card .form-group input[type="password"] {
@@ -1092,7 +1073,6 @@ button:disabled {
   font-size: 0.975rem;
   color: #0f172a;
   box-sizing: border-box;
-  outline: none;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1102,10 +1082,9 @@ button:disabled {
   box-shadow: 0 0 0 4px rgba(12, 39, 78, 0.15);
 }
 
-/* Interactive Role Selection Grid */
+
 .signup-card .role-selector {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 12px;
   width: 100%;
 }
@@ -1129,7 +1108,7 @@ button:disabled {
   border-color: #94a3b8;
 }
 
-/* Hide raw radio inputs completely */
+
 .signup-card .role-card input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -1145,7 +1124,7 @@ button:disabled {
   letter-spacing: normal;
 }
 
-/* Active Selected Role Card */
+
 .signup-card .role-card.selected {
   background-color: #dcfce7;
   border-color: #16a34a;
@@ -1202,3 +1181,143 @@ button:disabled {
 
 
 
+
+
+
+
+
+
+
+
+.signin-wrapper {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "PT Serif Caption", serif;
+  box-sizing: border-box;
+}
+
+
+.signin-wrapper .signin-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 44px 40px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+
+.signin-card .signin-header {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.signin-card .signin-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+ 
+}
+
+.signin-card .error {
+  font-size: 0.875rem;
+  color: #ef4444;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin: 12px 0 0 0;
+}
+
+
+.signin-card .signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.signin-card .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.signin-card .form-group label {
+  display: block;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.signin-card .form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f8fafc;
+  font-size: 0.975rem;
+  color: #0f172a;
+  box-sizing: border-box;
+  
+}
+
+.signin-card .form-group input:focus {
+  background-color: #ffffff;
+  border-color: #334155;
+  box-shadow: 0 0 0 4px rgba(10, 19, 87, 0.15);
+}
+
+
+.signin-card .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.signin-card .submit-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+
+}
+
+.signin-card .submit-btn:hover {
+  background-color: #334155;
+  box-shadow: 0 6px 20px rgba(14, 23, 108, 0.3);
+  
+}
+
+
+.signin-card .cancel-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: transparent;
+  color: #64748b;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signin-card .cancel-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}

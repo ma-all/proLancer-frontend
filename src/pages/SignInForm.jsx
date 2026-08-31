@@ -31,23 +31,30 @@ const SignInForm = (props) => {
     }
 
     return(
-        <section className="card">
-            <header>
+        <div className="signin-wrapper">
+        <section className="signin-card" >
+            <header className="signin-header" >
             <h1>Sign In</h1>
-            <p className="error">{message}</p>
+           {message && <p className="error">{message}</p>}
             </header>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="signin-form">
+                <div className="form-group">
                 Username:
                 <input type="text" name="username" value={formData.username} required onChange={handleChange} />
+                </div>
+                <div className="form-group">
                 Password:
                 <input type="password" name="password" value={formData.password} required onChange={handleChange} />
+                </div>
+
                 <div className="actions">
-                    <button type="submit">Sign In</button>
-                    <button type="button" onClick={() => navigate('/')}>Cancel</button>
+                    <button type="submit" className="submit-btn">Sign In</button>
+                    <button type="button" className="cancel-btn" onClick={() => navigate('/')}>Cancel</button>
                 </div>
             </form>
         </section>
+        </div>
     )
 }
 
