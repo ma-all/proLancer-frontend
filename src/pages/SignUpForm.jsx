@@ -39,17 +39,28 @@ const SignUpForm = (props) => {
     }
 
     return (
-        <section className="card">
-            <header>
+        <div className="signup-wrapper">
+        <section className="signup-card">
+            <header className="signup-header">
                 <h1>Sign Up</h1>
-                <p>{message}</p>
+                {message && <p className="signup-message">{message}</p>}
             </header>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="signup-form">
+                <div className="form-group">
                 Username:
+                
                 <input type="text" name="username" onChange={handleChange} value={formData.username} required />
+                </div>
 
+
+
+                <div className="form-group">
                 Email:
                 <input type='text' name='email' onChange={handleChange} value={formData.email} required />
+                </div>
+
+
+                 <div className="form-group">
 
                 Role:
                 <label>
@@ -67,15 +78,18 @@ const SignUpForm = (props) => {
 
                 Confirm Password:
                 <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
-
-                <div className="actions">
-                    <button type="submit" disabled={!isFormValid()}>Sign Up</button>
-                    {/* <button>Cancel</button> */}
                 </div>
+
+                 <div className="actions"> 
+                    <button type="submit"className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
+                     <button  className="cancel-btn" >Cancel</button> 
+                 </div> 
             </form>
         </section>
+        </div>
     )
 }
+
 
 export default SignUpForm
 
