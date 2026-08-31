@@ -2195,3 +2195,39 @@ button:disabled {
 .btn-send-message:hover {
   background-color: #0d225a;
 }
+
+.proposals-filter-container {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-part {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #435072;
+  border-radius: 8px;
+  background-color: #435072;
+  padding: 6px 12px;
+  color: var(--light);
+  cursor: pointer;
+}
+
+.filter-select {
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    padding-right: 12px;
+    color: var(--light);
+}
+
+.filter-select option {
+    background-color: #435072;     
+    padding: 8px;
+    color: var(--light);
+}
