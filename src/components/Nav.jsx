@@ -54,8 +54,7 @@ const Nav = (props) => {
                             </li>
 
                             <li>
-                                {/* need to change this link */}
-                                <Link to='/projectProposal'>Projects</Link> 
+                                <Link to='/projectslist'>Projects</Link> 
                             </li>
 
                             <li>
