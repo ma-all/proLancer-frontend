@@ -80,10 +80,10 @@ const SignUpForm = (props) => {
                 <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
                 </div>
 
-                {/* <div className="actions"> */}
-                    <button type="submit"className="save-profile-btn" disabled={!isFormValid()}>Sign Up</button>
-                    {/* <button>Cancel</button> */}
-                {/* </div> */}
+                 <div className="actions"> 
+                    <button type="submit"className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
+                     <button  className="cancel-btn" >Cancel</button> 
+                 </div> 
             </form>
         </section>
         </div>
