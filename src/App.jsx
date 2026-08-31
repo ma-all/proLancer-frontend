@@ -5,7 +5,7 @@ import { Routes, Route, Navigate } from "react-router"
 import { useEffect, useState } from "react"
 import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
-import Dashboard from "./pages/BusinessOwner/Dashboard"
+import Dashboard from "./pages/BusinessOwner/BusDashboard"
 import ProposalForm from './pages/BusinessOwner/ProposalForm'
 import ProfileForm from "./pages/BusinessOwner/ProfileForm"
 import ProfileFormDev from "./pages/Developer/ProfileFormDev"
@@ -24,6 +24,7 @@ import DevDashboard from './pages/Developer/DevDashboard'
 import Chats from './Chats'
 import ProjectsList from "./pages/Developer/ProjectsList"
 import ProjectsDetails from "./pages/Developer/ProjectDetails"
+import BusDashboard from "./pages/BusinessOwner/BusDashboard"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -87,7 +88,7 @@ const App = () => {
       <Nav user={user} setUser={setUser} />
       <main className="app-main">
         <Routes>
-          <Route path='/' element={user ? <DevDashboard user={user} /> : <Landing />} />
+          <Route path='/' element={!user ? (<SignInForm />) : developer ? (<DevDashboard user={user} />) : (<BusDashboard user={user} />)} />
           <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
           <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
@@ -101,23 +102,16 @@ const App = () => {
           <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal' element={<ProposalList proposals={proposals} />} />
           <Route path='/business-owner/viewDev' element={<ProfileDetailsDev user={user} setUser={setUser} />} />
-          <Route path='/developer/:developerId' element={<DeveloperDetails developers={allDevelopers} user={user} />} /> 
+          <Route path='/developer/:developerId' element={<DeveloperDetails developers={allDevelopers} user={user} />} />
           <Route path='/business-owner/profile' element={<ProfileDetailsBus user={user} setUser={setUser} />} />
-
-
-          {/* for the paid */}
           <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
 
           <Route path='/chat/:chatId' element={<Chats user={user} />} />
           <Route path='/chat' element={<Chats user={user} />} />
 
-          <Route path='/projectslist' element={<ProjectsList user={user} proposals={proposals} setProposals={setProposals}/>}/>
-          <Route path='/projectslist/:projectlistId' element={<ProjectsDetails user={user} proposals={proposals}  setProposals={setProposals}/>} />
-<Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
-
-       {/* <Route path='/dashboardDev' element={<DevDashboard />} /> */}
-
-
+          <Route path='/projectslist' element={<ProjectsList user={user} proposals={proposals} setProposals={setProposals} />} />
+          <Route path='/projectslist/:projectlistId' element={<ProjectsDetails user={user} proposals={proposals} setProposals={setProposals} />} />
+          <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} />
         </Routes>
       </main>
     </div>

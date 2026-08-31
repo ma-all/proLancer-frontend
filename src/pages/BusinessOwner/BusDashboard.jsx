@@ -3,20 +3,11 @@ import { FolderOpenDot, ScrollText, MessagesSquare } from 'lucide-react'
 import { useNavigate } from "react-router"
 
 
-const DevDashboard = (props) => {
+const BusDashboard = (props) => {
 
     const navigate = useNavigate()
 
     const [allUsers, setAllUsers] = useState([])
-
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         const usersData =  await index()
-    //         setAllUsers(usersData)
-    //     }
-    //     fetchUsers()
-
-    // }, [])
 
     return (
         <section className="dashboard-container">
@@ -24,16 +15,17 @@ const DevDashboard = (props) => {
                 <h1>Welcome {props.user?.username}!</h1>
             </header>
             <div className="stats-grid">
-                <div className="stat-card color" onClick={() => navigate('/requests')}>
+                <div className="stat-card color" onClick={() => navigate('/projectProposal')}>
                     <div className="stat header">
                         <span className="icon-box">
                             <ScrollText size={25} />
                         </span>
                     </div>
-                    <p className="stat-lable">My Requests</p>
+                    <p className="stat-lable">My Proposals</p>
                 </div>
 
-                <div className="stat-card color" onClick={() => navigate('/projectslist')}>
+                {/* this needs to be fixed */}
+                <div className="stat-card color" onClick={() => navigate('/requests')}>
                     <div className="stat-header">
                         <span className="icon-box">
                             <FolderOpenDot size={25} />
@@ -63,4 +55,4 @@ const DevDashboard = (props) => {
     )
 }
 
-export default DevDashboard
+export default BusDashboard
