@@ -27,25 +27,27 @@ const Requests = (props) => {
 
     return (
         <>
-            <h2>Proposal Requests</h2>
+            <h2 className='h2'>Proposal Requests</h2>
             <div className='proposal-details-container'>
             
             {proposalRequests.map((request) => (
                 <div key={request._id} className='proposal-details-card'>
                     {/* <p>does it print anything inside</p> */}
-                    <p>{request.name}</p>
-                    <p>{request.description}</p>
-                    <p>{request.budget}</p>
-                    <p>{request.features}</p>
-                    <p>{request.theme}</p>
-                    <p>{request.status}</p>
+                    <div className='request-content'>
+                    <p className='request-name'>{request.name}</p>
+                    <p className='request-description'>{request.description}</p>
+                    <p className='request-budget'>{request.budget}</p>
+                    <p className='request-features'>{request.features}</p>
+                    <p className='request-theme'>{request.theme}</p>
+                    <p className='request-status'>{request.status}</p>
+                    </div>
 
                     <br />
                     {(request.status === 'Pending' || !request.status) && (
-                        <>
-                            <button onClick={() => handleStatus(request._id, 'Accepted')}>Accept</button>
-                            <button onClick={() => handleStatus(request._id, 'Rejected')}>Reject</button>
-                        </>
+                        <div className='actions-container'>
+                            <button className='btn-accept' onClick={() => handleStatus(request._id, 'Accepted')}>Accept</button>
+                            <button className='btn-reject' onClick={() => handleStatus(request._id, 'Rejected')}>Reject</button>
+                        </div>
                     )}
                 </div>
             ))}
