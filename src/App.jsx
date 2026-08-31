@@ -21,6 +21,8 @@ import * as userService from './services/user'
 import ProfileDetailsBus from "./pages/BusinessOwner/ProfileDetailsBus"
 import ReceiptDetails from "./pages/BusinessOwner/ReceiptDetails"
 import Chats from './Chats'
+import ProjectsList from "./pages/Developer/ProjectsList"
+import ProjectsDetails from "./pages/Developer/ProjectDetails"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -107,6 +109,10 @@ const App = () => {
 
           <Route path='/chat/:chatId' element={<Chats user={user} />} />
           <Route path='/chat' element={<Chats user={user} />} />
+
+          <Route path='/projectslist' element={<ProjectsList user={user} proposals={proposals} setProposals={setProposals}/>}/>
+          <Route path='/projectslist/:projectlistId' element={<ProjectsDetails user={user} proposals={proposals}  setProposals={setProposals}/>} />
+
 
         </Routes>
       </main>

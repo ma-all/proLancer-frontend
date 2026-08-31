@@ -7,7 +7,8 @@ const Requests = (props) => {
     const proposalRequests = props.proposals?.filter(
         (proposal) => {
             const developerId = (proposal.developer?._id || proposal.developer)?.toString()
-            return developerId === currentUserId
+            const isPending = proposal.status === 'Pending' || !proposal.status
+            return developerId === currentUserId && isPending
         }
     ) || []
 
