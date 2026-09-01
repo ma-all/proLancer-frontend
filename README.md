@@ -1,16 +1,44 @@
-# React + Vite
+# Project Name
+ProLancer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+_A digital marketplace that connect business owners with freelance developers to create websites based on business owner's requirements._
 
-Currently, two official plugins are available:
+## Backend Url
+https://github.com/ma-all/proLancer-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Screenshots of Business Owners Interface
 
-## React Compiler
+## Screenshots of Developer Interface
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
+- **React**
+- **JS**
+- **CSS**
+- **MongoDB**
+- **Stripe**
+- **Web Sockets**
+- **Lucide React**
 
-## Expanding the ESLint configuration
+## Getting Started
+1. Clone backend and frontend repositries.
+2. Install modules: ```bash npm install ```
+3. Run ```bash nodemon ``` on the backend, and ```bash npm run dev ``` on the fronted.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+- Users can sign up as **Business Owners** or **Developers**.
+- **Business owners** can view developers, submit project proposals to specific developers.
+- **Developers** can view project proposal details, and accept or reject project proposals.
+- **Business owners** can pay for **developers** after their proposal has been accepted.
+- **Developers** start working on the **business owner's** desired website, and change status.
+- **Business owners** and **developers** can discuss website requirements through chat.
+- **Business owners** can filter through their proposals.
+- **Developers** can send website deployment link to **business owners** through their chat.
+
+## Future Enhancements
+- Nofity **business owners** through email and phone messages after their website has been completed.
+- Allow **business owners** to pay in installments.
+- Allow other freelancers such as _UX/UI Desginers, Data Analytics, etc_ to showcase their skills and work with **business owners**.
+
+### Credits
+- We would like to thank Nabila, Bidoor, and Zainab for their continous support and help.
