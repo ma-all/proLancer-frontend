@@ -4,19 +4,17 @@ import { useState } from 'react'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import CheckoutForm from './CheckoutForm'
-
-// import './ReceiptDetails.css'
-
+import * as chatService from '../../services/chat'
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 const ProposalDetails = (props) => {
-// i add this maybe i will remove it 
+    // i add this maybe i will remove it 
     const navigate = useNavigate()
 
-
-
     const { projectProposalId } = useParams()
+
+    const { developerId } = useParams()
 
     const [clientSecret, setClientSecret] = useState('')
 
@@ -27,22 +25,32 @@ const ProposalDetails = (props) => {
     const proposal = props.proposals?.find((pro) =>
         pro._id === projectProposalId)
 
+    
+    const developer = developerId ? props.developers?.find((dev) =>
+        dev._id === developerId) : props.user
+
     if (!proposal) {
         return <p>Loading Proposal..</p>
     }
-    
+
     const currentUserId = (props.user?._id || props.user?.id || props.user)?.toString()
-    
+
     const ownerId = (proposal.businessOwner?._id || proposal.businessOwner?.id || proposal.businessOwner)?.toString()
 
-    const isBusinessOwner = Boolean(currentUserId && ownerId && currentUserId === ownerId) 
+    const isBusinessOwner = Boolean(currentUserId && ownerId && currentUserId === ownerId)
+
+    const devId = (proposal.devloper?._id || proposal.devloper?.id)?.toString()
 
     const isAccepted = proposal.status?.toLowerCase() === 'accepted'
 
-    const isUnpaid = !proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid' 
+    const isUnpaid = !proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid'
 
-    //for the paid
     const isPaid = proposal.paymentStatus?.toLowerCase() === 'paid'
+
+    const devName = proposal.developer?.name || proposal.developer?.username
+
+    const devEmail = proposal.developer?.email
+
 
     const handlePayment = async () => {
         try {
@@ -63,14 +71,23 @@ const ProposalDetails = (props) => {
         try {
             const updatedStatus = await paymentService.confirm(proposal._id, paymentId)
             setShowPayment(false)
-            if(props.setProposals) {
-                props.setProposals((prev) => 
-                prev.map((pro) =>
-                pro._id === updatedStatus._id ? updatedStatus : pro))
+            if (props.setProposals) {
+                props.setProposals((prev) =>
+                    prev.map((pro) =>
+                        pro._id === updatedStatus._id ? updatedStatus : pro))
             }
             if (props.onUpdateStatus) {
                 props.onUpdateStatus(updatedStatus)
-            } 
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleChat = async () => {
+        try {
+            const chat = await chatService.create({ developerId: developer._id })
+            navigate(`/chat/${chat._id}`)
         } catch (error) {
             console.log(error)
         }
@@ -86,6 +103,14 @@ const ProposalDetails = (props) => {
                 </div>
                 <hr />
                 <div className='proposal-details-rest'>
+                    <div className='proposal-details'>
+                        Developer Name:
+                        <p>{devName}</p>
+                    </div>
+                    <div className='proposal-details'>
+                        Developer Email:
+                        <p>{devEmail}</p>
+                    </div>
                     <div className='proposal-details'>
                         Description:
                         <p>{proposal.description}</p>
@@ -107,7 +132,11 @@ const ProposalDetails = (props) => {
                     </div>
                 </div>
 
-                
+                <div>
+                    <button onClick={handleChat}>Send Message</button>
+                </div>
+
+
                 {isPaid && (
                     <div className='proposal-receipt-section'>
                         <p>Payment has been completed for this proposal. </p>
