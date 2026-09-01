@@ -34,8 +34,6 @@ const SignUpForm = (props) => {
             } else {
                 navigate('/')
             }
-
-            navigate('/')
         } catch (err) {
             setMessage(err.message)
         }
@@ -88,7 +86,7 @@ const SignUpForm = (props) => {
 
                     <div className="actions">
                         <button type="submit" className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
-                        <button type='button' className="cancel-btn" >Cancel</button>
+                        <button type='button' className="cancel-btn" onClick={() => navigate('/')} >Cancel</button>
                     </div>
                 </form>
             </section>

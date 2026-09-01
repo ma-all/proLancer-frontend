@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router"
 import { useState } from "react"
 import { signIn } from "../services/auth"
+import * as userService from '../services/user'
 
 const SignInForm = (props) => {
 
@@ -22,7 +23,13 @@ const SignInForm = (props) => {
         event.preventDefault()
         try {
             const signedInUser = await signIn(formData)
-            props.setUser(signedInUser)
+            if (signedInUser?._id) {
+                const fullUser = await userService.show(signedInUser._id)
+                props.setUser(fullUser)
+            } else {
+                props.setUser(signedInUser)
+            }
+            
             setFormData(initialState)
             navigate('/')
         } catch(err) {

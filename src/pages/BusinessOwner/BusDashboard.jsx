@@ -26,15 +26,6 @@ const BusDashboard = (props) => {
                     <p className="stat-lable">My Proposals</p>
                 </div>
 
-                {/* this needs to be fixed */}
-                <div className="stat-card color" onClick={() => navigate('/requests')}>
-                    <div className="stat-header">
-                        <span className="icon-box">
-                            <FolderOpenDot size={25} className="dash-icon"/>
-                        </span>
-                    </div>
-                    <p className="stat-lable">My Projects</p>
-                </div>
                 <div className="stat-card color" onClick={() => navigate('/chat')}>
                     <div className="stat-header">
                         <span className="icon-box">

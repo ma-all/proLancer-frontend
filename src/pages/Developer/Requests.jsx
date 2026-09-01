@@ -13,16 +13,12 @@ const Requests = (props) => {
     ) || []
 
     const handleStatus = async (proposalId, newStatus) => {
-        try {
             const updateStatus = await proposalService.updateStatus(proposalId, { status: newStatus })
             if (props.setProposals) {
                 props.setProposals((prev) =>
                     prev.map((proposal) => proposal._id === proposalId ? updateStatus : proposal)
                 )
             }
-        } catch (error) {
-            console.error(error)
-        }
     }
 
     if (!currentUserId) {

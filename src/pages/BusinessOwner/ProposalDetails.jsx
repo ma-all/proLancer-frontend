@@ -20,12 +20,10 @@ const ProposalDetails = (props) => {
 
     const [showPayment, setShowPayment] = useState(false)
 
-    const [errorMessage, setErrorMessage] = useState('')
-
     const proposal = props.proposals?.find((pro) =>
         pro._id === projectProposalId)
 
-    
+
     const developer = developerId ? props.developers?.find((dev) =>
         dev._id === developerId) : props.user
 
@@ -39,8 +37,6 @@ const ProposalDetails = (props) => {
 
     const isBusinessOwner = Boolean(currentUserId && ownerId && currentUserId === ownerId)
 
-    const devId = (proposal.devloper?._id || proposal.devloper?.id)?.toString()
-
     const isAccepted = proposal.status?.toLowerCase() === 'accepted'
 
     const isUnpaid = !proposal.paymentStatus || proposal.paymentStatus.toLowerCase() === 'unpaid'
@@ -53,44 +49,32 @@ const ProposalDetails = (props) => {
 
 
     const handlePayment = async () => {
-        try {
-            setErrorMessage('')
-            const data = await paymentService.create(proposal._id)
-            if (data.clientSecret) {
-                setClientSecret(data.clientSecret)
-                setShowPayment(true)
-            } else if (data.error) {
-                setErrorMessage(data.error)
-            }
-        } catch (error) {
-            setErrorMessage('Failed to navigate to payment', error.message)
+        setErrorMessage('')
+        const data = await paymentService.create(proposal._id)
+        if (data.clientSecret) {
+            setClientSecret(data.clientSecret)
+            setShowPayment(true)
+        } else if (data.error) {
+            setErrorMessage(data.error)
         }
     }
 
     const handlePaymentDone = async (paymentId) => {
-        try {
-            const updatedStatus = await paymentService.confirm(proposal._id, paymentId)
-            setShowPayment(false)
-            if (props.setProposals) {
-                props.setProposals((prev) =>
-                    prev.map((pro) =>
-                        pro._id === updatedStatus._id ? updatedStatus : pro))
-            }
-            if (props.onUpdateStatus) {
-                props.onUpdateStatus(updatedStatus)
-            }
-        } catch (error) {
-            console.log(error)
+        const updatedStatus = await paymentService.confirm(proposal._id, paymentId)
+        setShowPayment(false)
+        if (props.setProposals) {
+            props.setProposals((prev) =>
+                prev.map((pro) =>
+                    pro._id === updatedStatus._id ? updatedStatus : pro))
+        }
+        if (props.onUpdateStatus) {
+            props.onUpdateStatus(updatedStatus)
         }
     }
 
     const handleChat = async () => {
-        try {
-            const chat = await chatService.create({ developerId: developer._id })
-            navigate(`/chat/${chat._id}`)
-        } catch (error) {
-            console.log(error)
-        }
+        const chat = await chatService.create({ developerId: developer._id })
+        navigate(`/chat/${chat._id}`)
     }
 
     return (

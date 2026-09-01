@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import * as userService from '../../services/user'
 import { useNavigate } from "react-router"
 
@@ -16,6 +16,14 @@ const ProfileForm = (props) => {
     }
     const [formData, setFormData] = useState(initialState)
 
+    useEffect(() => {
+        if(user) {
+            setFormData({
+                businessDescription: user.businessDescription || '',
+                businessCategory: user.businessCategory || '',
+            })
+        }
+    }, [user])
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -28,19 +36,14 @@ const ProfileForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const updatedUser = await userService.update(user._id, formData)
-            if (setUser)
-                setUser(updatedUser)
-            navigate('/business-owner/profile')
-        } catch (error) {
-            console.log('error updating profile:', error)
-
-        }
+        const updatedUser = await userService.update(user._id, formData)
+        if (setUser)
+            setUser(updatedUser)
+        navigate('/business-owner/profile')
     }
 
     if (!user) {
-        <p>Loading profile form...</p>
+        return <p>Loading profile form...</p>
     }
 
     return (
