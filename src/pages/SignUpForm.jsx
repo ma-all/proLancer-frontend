@@ -49,52 +49,49 @@ const SignUpForm = (props) => {
 
     return (
         <div className="signup-wrapper">
-        <section className="signup-card">
-            <header className="signup-header">
-                <h1>Sign Up</h1>
-                {message && <p className="signup-message">{message}</p>}
-            </header>
-            <form onSubmit={handleSubmit} className="signup-form">
-                <div className="form-group">
-                Username:
-                
-                <input type="text" name="username" onChange={handleChange} value={formData.username} required />
-                </div>
+            <section className="signup-card">
+                <header className="signup-header">
+                    <h1>Sign Up</h1>
+                    {message && <p className="signup-message">{message}</p>}
+                </header>
+                <form onSubmit={handleSubmit} className="signup-form">
+                    <div className="form-group">
+                        Username:
 
+                        <input type="text" name="username" onChange={handleChange} value={formData.username} required />
+                    </div>
 
+                    <div className="form-group">
+                        Email:
+                        <input type='text' name='email' onChange={handleChange} value={formData.email} required />
+                    </div>
 
-                <div className="form-group">
-                Email:
-                <input type='text' name='email' onChange={handleChange} value={formData.email} required />
-                </div>
+                    <div className="form-group">
 
+                        Role:
+                        <label>
+                            <input type='radio' name='role' onChange={handleChange} value='Developer' checked={formData.role === 'Developer'} required />
+                            Developer
+                        </label>
 
-                 <div className="form-group">
+                        <label>
+                            <input type='radio' name='role' onChange={handleChange} value='Business Owner' checked={formData.role === 'Business Owner'} required />
+                            Business Owner
+                        </label>
 
-                Role:
-                <label>
-                    <input type='radio' name='role' onChange={handleChange} value='Developer' checked={formData.role === 'Developer'} required />
-                    Developer
-                </label>
+                        Password:
+                        <input type="password" name="password" onChange={handleChange} value={formData.password} required />
 
-                <label>
-                    <input type='radio' name='role' onChange={handleChange} value='Business Owner' checked={formData.role === 'Business Owner'} required />
-                    Business Owner
-                </label>
+                        Confirm Password:
+                        <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
+                    </div>
 
-                Password:
-                <input type="password" name="password" onChange={handleChange} value={formData.password} required />
-
-                Confirm Password:
-                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
-                </div>
-
-                 <div className="actions"> 
-                    <button type="submit"className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
-                    <button type='button' className="cancel-btn" >Cancel</button> 
-                 </div> 
-            </form>
-        </section>
+                    <div className="actions">
+                        <button type="submit" className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
+                        <button type='button' className="cancel-btn" >Cancel</button>
+                    </div>
+                </form>
+            </section>
         </div>
     )
 }

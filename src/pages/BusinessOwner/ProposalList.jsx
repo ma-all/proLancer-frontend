@@ -8,7 +8,6 @@ const ProposalList = (props) => {
 
     const [sFilter, setSFilter] = useState('All')
 
-    //keeping this here because i might need it later
     const filterproposals = props.proposals?.filter((proposal) => {
         const ownerId = (proposal.businessOwner?._id || proposal.businessOwner?.id || proposal.businessOwner)?.toString()
         // return ownerId === currentUserId
@@ -44,23 +43,22 @@ const ProposalList = (props) => {
                         </div>
                     </div>
                 </div>
-            
-            <div className='proposal-list-container'>
-                {filterproposals.map((proposal) =>
-                    <div key={proposal._id} className='proposal-list-card'>
-                        <div className='proposal-name-status'>
-                            <p className='proposal-list-name'>{proposal.name}</p>
-                            {/* <p>{proposal.status}</p> */}
+
+                <div className='proposal-list-container'>
+                    {filterproposals.map((proposal) =>
+                        <div key={proposal._id} className='proposal-list-card'>
+                            <div className='proposal-name-status'>
+                                <p className='proposal-list-name'>{proposal.name}</p>
+                            </div>
+
+                            <br />
+
+                            <Link to={`/projectProposal/${proposal._id}`}>
+                                <button type='submit' className='proposal-list-button'> View Details</button>
+                            </Link>
                         </div>
-
-                        <br />
-
-                        <Link to={`/projectProposal/${proposal._id}`}>
-                            <button type='submit' className='proposal-list-button'> View Details</button>
-                        </Link>
-                    </div>
-                )}
-            </div>
+                    )}
+                </div>
             </div>
         </>
     )

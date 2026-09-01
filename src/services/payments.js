@@ -16,7 +16,7 @@ const create = async (projectProposalId) => {
         }
         return data
     } catch (error) {
-        throw new Error(data.error)
+        throw new Error(error)
     }
 }
 
@@ -36,7 +36,7 @@ const confirm = async (projectProposalId, paymentId) => {
         }
         return data
     } catch (error) {
-        throw new Error(data.error)
+        throw new Error(error)
     }
 }
 

@@ -4,18 +4,12 @@ const ProjectsList = (props) => {
 
     const currentUserId = (props.user?._id || props.user)?.toString()
 
-    // const navigate = useNavigate()
-
     const currentStatus = ['Accepted', 'In Progress', 'Completed']
 
     const acceptedProjects = props.proposals?.filter((proposal) => {
         const developerId = (proposal.developer?._id || proposal.developer)?.toString()
         return developerId === currentUserId && currentStatus.includes(proposal.status)
     }) || []
-
-    console.log(currentUserId)
-
-    console.log(acceptedProjects)
 
     return (
         <div className='requests-wrapper' >
@@ -42,9 +36,6 @@ const ProjectsList = (props) => {
                     ))
                 )}
             </div>
-
-
-
         </div>
     )
 }

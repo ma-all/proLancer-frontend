@@ -22,7 +22,6 @@ const signUp = async (formData) => {
     } catch (err) {
         throw new Error(err)
     }
-
 }
 
 const signIn = async (formData) => {
@@ -41,14 +40,12 @@ const signIn = async (formData) => {
 
         if (data.token) {
             localStorage.setItem('token', data.token)
-            // returning the user object
             return JSON.parse(atob(data.token.split('.')[1])).payload
         }
 
     } catch (err) {
         throw new Error(err)
     }
-
 }
 
 export {

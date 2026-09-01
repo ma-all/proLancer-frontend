@@ -9,7 +9,7 @@ import * as chatService from '../../services/chat'
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 const ProposalDetails = (props) => {
-    // i add this maybe i will remove it 
+
     const navigate = useNavigate()
 
     const { projectProposalId } = useParams()

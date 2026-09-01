@@ -7,8 +7,6 @@ const BusDashboard = (props) => {
 
     const navigate = useNavigate()
 
-    const [allUsers, setAllUsers] = useState([])
-
     return (
         <section className="dashboard-container">
             <header className="dashboard-header">
@@ -41,15 +39,6 @@ const BusDashboard = (props) => {
                     </div>
                     <p className="stat-lable">My Chats</p>
                 </div>
-                {/* {allUsers.map((user) => (
-                    <div className="card">
-                        <header>
-                            <h1>
-                                {user.username}
-                            </h1>
-                        </header>
-                    </div>
-                ))} */}
             </div>
         </section>
     )

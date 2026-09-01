@@ -48,7 +48,7 @@ const ProfileForm = (props) => {
                         <label className="desc-profile">Description:</label>
                         <br />
                         <br />
-                        <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} className="desc-textarea"/>
+                        <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} className="desc-textarea" />
                     </div>
                     <br />
                     <div className="category-group">
@@ -67,8 +67,5 @@ const ProfileForm = (props) => {
 
         </div>
     )
-
-
-
 }
 export default ProfileForm

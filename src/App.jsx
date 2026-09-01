@@ -99,21 +99,16 @@ const App = () => {
           <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} user={user}/> : <Navigate to='/' />} />
           <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} user={user} setProposals={setProposals} /> : <Navigate to='/' />} />
           <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers} /> : <Navigate to='/' />} />
-          {/* <Route path='/developers/:developerId' element={businessOwner ? <DeveloperDetails /> : <Navigate to='/sign-in' />} /> */}
           <Route path='/requests' element={developer ? <Requests proposals={proposals} setProposals={setProposals} user={user} /> : <Navigate to='/' />} />
           <Route path='/projectProposal/form/:developerId' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/' />} />
-          {/* <Route path='/projectProposal' element={<ProposalList proposals={proposals} />} /> */}
           <Route path='/business-owner/viewDev' element={businessOwner ? <ProfileDetailsDev user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path='/developer/:developerId' element={businessOwner ? <DeveloperDetails developers={allDevelopers} user={user} /> : <Navigate to='/' />} />
           <Route path='/business-owner/profile' element={businessOwner ? <ProfileDetailsBus user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path="/receipt/:proposalId" element={businessOwner ? <ReceiptDetails proposals={proposals} /> : <Navigate to='/' />} />
-
           <Route path='/chat/:chatId' element={<Chats user={user} />} />
           <Route path='/chat' element={<Chats user={user} />} />
-
           <Route path='/projectslist' element={developer ? <ProjectsList user={user} proposals={proposals} setProposals={setProposals} /> : <Navigate to='/' />} />
           <Route path='/projectslist/:projectlistId' element={developer ?<ProjectsDetails user={user} proposals={proposals} setProposals={setProposals} /> : <Navigate to='/' />} />
-          {/* <Route path="/receipt/:proposalId" element={<ReceiptDetails proposals={proposals} />} /> */}
         </Routes>
       </main>
     </div>

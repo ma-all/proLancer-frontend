@@ -16,8 +16,7 @@ const create = async (proposalFormData) => {
         }
         return data
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error(error)
     }
 }
 
@@ -34,7 +33,7 @@ const index = async () => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -52,11 +51,10 @@ const show = async (projectProposalId) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
-//for business owner, allow them to change info 
 const update = async (projectProposalId, proposalFormData) => {
     try {
         const res = await fetch(`${BASE_URL}/${projectProposalId}`, {
@@ -73,11 +71,10 @@ const update = async (projectProposalId, proposalFormData) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
-//for developers
 const updateStatus = async (projectProposalId, proposalFormData) => {
     try {
         const res = await fetch(`${BASE_URL}/${projectProposalId}/status`, {
@@ -94,7 +91,7 @@ const updateStatus = async (projectProposalId, proposalFormData) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -112,7 +109,7 @@ const deleteProposal = async (projectProposalId) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 

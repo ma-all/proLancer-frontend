@@ -1,5 +1,4 @@
 import { Link } from "react-router"
-import { Laptop, BriefcaseBusiness } from 'lucide-react'
 
 const Landing = () => {
     return (
@@ -19,7 +18,6 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

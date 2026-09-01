@@ -16,8 +16,7 @@ const create = async (chatData ) => {
         }
         return data
     } catch (error) {
-        console.log(error)
-        throw error
+        throw new Error(error)
     }
 }
 
@@ -34,7 +33,7 @@ const index = async () => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -52,7 +51,7 @@ const show = async (chatId) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -72,7 +71,7 @@ const sendMessage = async (chatId, msg) => {
         }
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
