@@ -18,25 +18,30 @@ const ProjectsList = (props) => {
     console.log(acceptedProjects)
 
     return (
-        <div className='projects-container' >
-            {acceptedProjects.length === 0 ? (
-                <p className='n0-projects'>No projects available yet</p>
-            ) : (
-                acceptedProjects.map((project) => (
-                    <div key={project._id} className='project-card'>
-                        <h3>{project.name}</h3>
-                        <div className='project-me'>
-                        <p className='project-budget'>{project.budget}</p>
-                        <p className='project-status'>{project.status}</p>
-                        </div>
+        <div className='requests-wrapper' >
+            <h2 className='requests-title'>Projects</h2>
+            <div className='requests-cards-grid'>
+                {acceptedProjects.length === 0 ? (
+                    <p className='n0-projects'>No projects available yet</p>
+                ) : (
+                    acceptedProjects.map((project) => (
+                        <div key={project._id} className='request-card-item'>
+                            <div className='request-card-header'>
+                                <h3 className='request-name'>{project.name}</h3>
+                            </div>
+                            <div className='request-card-body'>
+                                <div className='request-detail-row'> 
+                                    <p className='request-status'>{project.status}</p>
+                                </div>
+                            </div>
 
-                        <Link to={`/projectslist/${project._id}`} className='project-link'>
-                        
-                            <button  type='submit'> View Details</button>
-                        </Link>
-                    </div>
-                ))
-            )}
+                            <Link to={`/projectslist/${project._id}`} className='actions-container'>
+                                <button type='submit' className='btn-accept'> View Details</button>
+                            </Link>
+                        </div>
+                    ))
+                )}
+            </div>
 
 
 

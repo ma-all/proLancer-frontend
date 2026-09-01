@@ -42,29 +42,29 @@ const ProfileForm = (props) => {
     return (
         <div className="profile-form-wrapper" >
             <div className="profile-card">
-            <h2 className="profile-heading">Profile</h2>
-            <form onSubmit={handleSubmit} className="profile-form">
-                <div className="input-group">
-                <label className="desc-profile">Description</label>
-                <br />
-                <br />
-                <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} />
-                </div>
-                <br />
-                <div className="category-group">
-                <p className="category-lable">category</p>
-                <div className="category-pills" >
-                    {CATEGORIES.map((cate) => (
-                        <button key={cate} type="button" className={formData.businessCategory === cate ? 'active' : ''} onClick={() => handleCategorySelect(cate)}>
-                            {cate}
-                        </button>
-                    ))}
+                <h2 className="profile-heading">Profile</h2>
+                <form onSubmit={handleSubmit} className="profile-form">
+                    <div className="input-group">
+                        <label className="desc-profile">Description:</label>
+                        <br />
+                        <br />
+                        <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} />
                     </div>
-                </div>
+                    <br />
+                    <div className="category-group">
+                        <p className="category-lable">Category:</p>
+                        <div className="category-pills" >
+                            {CATEGORIES.map((cate) => (
+                                <button key={cate} type="button" className={formData.businessCategory === cate ? 'active' : ''} onClick={() => handleCategorySelect(cate)}>
+                                    {cate}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                     <button className="save-profile-btn" type='submit'>Save Profile</button>
-            </form>
+                </form>
             </div>
-            
+
         </div>
     )
 

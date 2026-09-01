@@ -43,7 +43,7 @@ const ReceiptDetails = (props) => {
         <div className='receipt-container'>
             <h2>Payment Receipt</h2>
             <hr />
-            <p><strong>Proposal Title:</strong> {proposal.name}</p>
+            <p><strong>Proposal Title:</strong>{proposal.name}</p>
             {/* <p><strong>Description:</strong> {proposal.description}</p> */}
             <p><strong>Amount Paid:</strong> BHD {proposal.budget}</p>
             <p><strong>Payment Status:</strong> {proposal.paymentStatus || 'Paid'}</p>

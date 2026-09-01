@@ -146,10 +146,10 @@ const ProposalDetails = (props) => {
 
 
                 {isBusinessOwner && isAccepted && isUnpaid && (
-                    <div>
+                    <div className='payment-checkout-container'>
                         <p>Your project proposal has been accepted! Please proceed to payment.</p>
                         {!showPayment ? (
-                            <button onClick={handlePayment}> Pay BHD{proposal.budget} Now </button>
+                            <button className='pay-amt-btn' onClick={handlePayment}> Pay BHD{proposal.budget} Now </button>
                         ) : (
                             clientSecret && (
                                 <Elements stripe={stripePromise} options={{ clientSecret }}>
