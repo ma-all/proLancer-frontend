@@ -2339,3 +2339,47 @@ hr {
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
+
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 360px;
+  margin: 16px auto 0;
+}
+
+
+.search-wrapper .search-icon {
+  position: absolute;
+  left: 12px;
+  color: #5c5a5a;
+  pointer-events: none;
+}
+
+
+.search-input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  font-size: 14px;
+  color: #0f172a;
+  background-color: #f1f5f9;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 1px 2px 14213f;
+}
+
+
+.search-input:hover {
+  border-color: #14213f;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 3px #0f172a;
+}
+
+.search-input::placeholder {
+  color: #14213f;
+}
