@@ -31,7 +31,7 @@ const Nav = (props) => {
     }
 
     return (
-        <>
+        <div className="nav-color">
             <header className="header-top">
                 <div className="header-left">
                     <button onClick={toggleSidebar} className='menu-btn'>
@@ -98,7 +98,7 @@ const Nav = (props) => {
                 </>
             }
 
-        </>
+        </div>
     )
 }
 

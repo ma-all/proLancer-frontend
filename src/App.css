@@ -1767,12 +1767,18 @@ hr {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
+.nav-color {
+  background-color: var(--background-button-hover);
+  color: var(--text-button-hover);
+}
+
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1rem;
+  padding: 12px;
 }
 
 .project-title {
@@ -1974,20 +1980,16 @@ hr {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #334155;
+  color: var(--text-button-hover);
   padding: 4px 8px;
   border-radius: 6px;
   transition: background 0.2s;
 }
 
-.menu-btn:hover {
-  background-color: #f1f5f9;
-}
-
 .nav-brand {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-button-hover);
   text-decoration: none;
 }
 
@@ -2006,17 +2008,6 @@ hr {
   border-radius: 12px;
 }
 
-.user-profile {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
 
 .sidebar-overlay {
   position: fixed;
@@ -2034,7 +2025,8 @@ hr {
   left: -280px;
   width: 280px;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: var(--background-button-hover);
+  color: var(--text-button-hover);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
   z-index: 100;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2096,10 +2088,12 @@ hr {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  color: var(--text-button-hover);
 }
 
 .sidebar-links a:hover {
   background-color: #f8fafc;
+  color: var(--main-text);
 }
 
 .signup-highlight {
