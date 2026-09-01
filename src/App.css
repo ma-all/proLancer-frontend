@@ -881,14 +881,15 @@ hr {
 }
 
 .profile-card {
-  width: 100%;
-  max-width: 720px;
+  /* width: 100%; */
+  width: 700px;
   background-color: #ffffff;
   border-radius: 24px;
   padding: 44px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
   box-sizing: border-box;
+  /* overflow: hidden; */
 }
 
 .profile-card .profile-heading {
@@ -1909,7 +1910,7 @@ hr {
   font-size: 0.875rem;
   font-weight: 600;
   border: none;
-  border-radius: 6px; 
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -2259,7 +2260,8 @@ hr {
   justify-content: center;
 }
 
-.btn-accept, .btn-reject {
+.btn-accept,
+.btn-reject {
   flex: 1;
   padding: 10px 16px;
   border: none;
@@ -2272,7 +2274,74 @@ hr {
   color: var(--text-button);
 }
 
-.btn-accept:hover, .btn-reject:hover {
+.btn-accept:hover,
+.btn-reject:hover {
   background-color: var(--background-button-hover);
   color: var(--text-button-hover);
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-btns {
+  background-color: var(--background-button);
+  color: var(--text-button);
+  border: 1px solid var(--background-button);
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.skill-btns.selected {
+  background-color: var(--background-button-hover);
+  color: var(--text-button-hover);
+  border-color: #0b132b;
+  box-shadow: 0 4px 10px rgba(11, 19, 43, 0.25);
+}
+
+.desc-textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.input-with-btn {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.btn-add {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.btn-remove {
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.link-text {
+  word-break: break-all;
+}
+
+.link-list {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.link-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }

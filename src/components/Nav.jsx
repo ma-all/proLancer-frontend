@@ -42,17 +42,6 @@ const Nav = (props) => {
                         PROLANCER
                     </Link>
                 </div>
-                {props.user && (
-                    <div className="user-info">
-                        {/* <span className="user-role">
-                            {props.user.role}
-                        </span> */}
-                        <div className="user-profile">
-                            <CircleUserRound size={25} />
-                        </div>
-
-                    </div>
-                )}
             </header>
 
             {isOpen &&
@@ -76,8 +65,6 @@ const Nav = (props) => {
                                             <Link to="/">Dashboard</Link>
                                             <Link to='/developers' onClick={closeSidebar}>Developers</Link>
                                             <Link to='/projectProposal' onClick={closeSidebar}>Proposals</Link>
-                                            {/* //need to change this link */}
-                                            <Link to='/projectProposal' onClick={closeSidebar}>Projects</Link>
                                             <Link to='/chat' onClick={closeSidebar}>Chats</Link>
                                             <Link to="/business-owner/profile" onClick={closeSidebar}>Profile</Link>
                                         </>

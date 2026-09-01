@@ -11,7 +11,6 @@ const ProfileFormDev = (props) => {
         'Java', 'C#', 'Express.js', 'Django', 'MongoDB', 'PHP',
         'PostgreSQL', 'JWT Authentication', 'WebSockets', 'GitHub',
         'Firebase', 'Cloudinary', 'Stripe']
-    // const developer = (props.developers && props.developers.find((dev)=>dev._id === developerId || props.user))
 
     const initialState = {
         developerDescription: props.user?.developerDescription || '',
@@ -26,6 +25,17 @@ const ProfileFormDev = (props) => {
     const [currentGitHubInput, setcurrentGitHubInput] = useState('')
 
     const [currentDeployed, setCurrentDeployed] = useState('')
+
+    const handleSkillSelector = (skill) => {
+
+        const currentSkills = formData.skills
+        const isAlreadySelected = currentSkills.includes(skill)
+
+        const updatedSkills = isAlreadySelected ? currentSkills.filter((sk) =>
+            sk !== skill) : [...currentSkills, skill]
+
+        setFormData({ ...formData, skills: updatedSkills })
+    }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -64,30 +74,6 @@ const ProfileFormDev = (props) => {
         setFormData({ ...formData, deployedLinks: updatedLink })
     }
 
-    const handleSkills = (event) => {
-        if (event?.target.selectedOptions) {
-            const selectedSkills = Array.from(
-                event.target.selectedOptions,
-                (skill) => skill.value
-            )
-            setFormData({ ...formData, skills: selectedSkills })
-            return
-        }
-
-        if (Array.isArray(event)) {
-            setFormData({ ...formData, skills: event })
-            return
-        }
-
-        if (event?.target?.value) {
-            const value = event.target.value
-            const updatedSkills = formData.skills.includes(value) ? formData.skills.filter((skill) => skill !== value) : [...formData.skills, value]
-
-            setFormData({ ...formData, skills: updatedSkills })
-        }
-
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!props.user?._id) {
@@ -115,21 +101,22 @@ const ProfileFormDev = (props) => {
                         <br />
                         <br />
                         <label className="desc-profile">Description:</label>
-                        <textarea name="developerDescription" rows={4} value={formData.developerDescription} onChange={handleChange} />
+                        <textarea name="developerDescription" rows={4} value={formData.developerDescription} onChange={handleChange} className="desc-textarea" />
                     </div>
 
                     <div>
                         <label className="desc-profile">GitHub Url:</label>
-                        <div>
+                        <div className="input-with-btn">
                             <input className="title-dev-profile" type="url" name="githubUrl" value={currentGitHubInput} onChange={(e) => setcurrentGitHubInput(e.target.value)} />
 
-                            <button className='btn-accept' type="button" onClick={handleAddGithubUrl}>Add Link</button>
+                            <button className='btn-accept btn-add' type="button" onClick={handleAddGithubUrl}> Add Link</button>
+
                         </div>
-                        <ul>
+                        <ul className="link-list">
                             {formData.githubUrl.map((url, index) => (
-                                <li key={index}>
-                                    <span>{url}</span>
-                                    <button className='btn-accept' type='button' onClick={() => handleRemoveGithubUrl(index)}>Remove Link</button>
+                                <li key={index} className="link-list-item">
+                                    <span className="link-text">{url}</span>
+                                    <button className='btn-accept btn-remove' type='button' onClick={() => handleRemoveGithubUrl(index)}>Remove Link</button>
 
                                 </li>
                             ))}
@@ -137,27 +124,34 @@ const ProfileFormDev = (props) => {
                     </div>
 
                     <label className="desc-profile">Deployed Websites Links:</label>
-                    <div>
+                    <div className="input-with-btn">
                         <input className="title-dev-profile" type="url" name="deployedLinks" value={currentDeployed} onChange={(event) => setCurrentDeployed(event.target.value)} />
 
-                        <button className='btn-accept' type='button' onClick={handleAddDeployedLinks}>Add Link</button>
+                        <button className='btn-accept btn-add' type='button' onClick={handleAddDeployedLinks}>Add Link</button>
                     </div>
-                    <ul>
+                    <ul className="link-list">
                         {formData.deployedLinks.map((link, index) => (
-                            <li key={index}>
-                                <span>{link}</span>
+                            <li key={index} className="link-list-item">
+                                <span className="link-text">{link}</span>
 
-                                <button className='btn-accept' type='button' onClick={() => handleRemoveDeployedLinks(index)}>Remove Link</button>
+                                <button className='btn-accept btn-remove' type='button' onClick={() => handleRemoveDeployedLinks(index)}>Remove Link</button>
                             </li>
                         ))}
                     </ul>
 
-                    <label className="desc-profile">Skills:</label>
-                    <select name="skills" multiple value={formData.skills} onChange={handleSkills}>
-                        {skillsOptions.map((skill) => (
-                            <option key={skill} value={skill}>{skill}</option>
-                        ))}
-                    </select>
+                    <label className="desc-profile">Skills</label>
+                    <br />
+                    <br />
+                    <div className="skills-wrapper">
+                        {skillsOptions.map((skill) => {
+                            const isSelected = formData.skills.includes(skill)
+                            return (
+                                <button key={skill} type='button' className={`skill-btns ${isSelected ? 'selected' : ''}`} onClick={() => handleSkillSelector(skill)}>
+                                    {skill}
+                                </button>
+                            )
+                        })}
+                    </div>
 
                     <div>
                         <button className="save-profile-btn" type="submit">Save Profile</button>
