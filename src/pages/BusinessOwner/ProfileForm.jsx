@@ -45,9 +45,12 @@ const ProfileForm = (props) => {
             <h2 className="profile-heading">Profile</h2>
             <form onSubmit={handleSubmit} className="profile-form">
                 <div className="input-group">
-                <label>Description</label>
+                <label className="desc-profile">Description</label>
+                <br />
+                <br />
                 <textarea name="businessDescription" rows={4} value={formData.businessDescription} onChange={handleChange} />
                 </div>
+                <br />
                 <div className="category-group">
                 <p className="category-lable">category</p>
                 <div className="category-pills" >

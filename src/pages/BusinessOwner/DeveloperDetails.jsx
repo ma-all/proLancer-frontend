@@ -84,10 +84,6 @@ const ProfileDetailsDev = (props) => {
 
             </div>
 
-            <div className="actions-section">
-                {/* <button  onClick={handleEdit}>Edit</button> */}
-                <button className="btn-back" onClick={() => navigate(-1)}>Back</button>
-            </div>
             <br/>
 
             <div>

@@ -70,19 +70,19 @@ const ProposalForm = (props) => {
                     <h2>New Project Proposal</h2>
                     <hr />
                     <div className='proposal-form'>
-                        Website Name:
+                        <label className='section-heading'>Website Name:</label>
                         <input type='text' name='name' onChange={handleChange} value={formData.name} required />
 
-                        Description:
+                        <label className='section-heading'>Description:</label>
                         <input type='text' name='description' onChange={handleChange} value={formData.description} required />
 
-                        Budget:
+                        <label className='section-heading'>Budget:</label>
                         <input type='number' name='budget' onChange={handleChange} value={formData.budget} required />
 
-                        Features:
+                        <label className='section-heading'>Features:</label>
                         <input type='text' name='features' onChange={handleChange} value={formData.features} required />
 
-                        Theme:
+                        <label className='section-heading'>Theme:</label>
                         <input type='text' name='theme' onChange={handleChange} value={formData.theme} required />
 
                         <br />

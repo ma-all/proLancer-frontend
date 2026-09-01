@@ -133,21 +133,21 @@ const ProposalDetails = (props) => {
                 </div>
 
                 <div>
-                    <button onClick={handleChat}>Send Message</button>
+                    <button onClick={handleChat} className='prop-detail-send-msg'>Send Message</button>
                 </div>
 
 
                 {isPaid && (
                     <div className='proposal-receipt-section'>
                         <p>Payment has been completed for this proposal. </p>
-                        <button onClick={() => navigate(`/receipt/${proposal._id}`)}>View Receipt</button>
+                        <button className='payment-btn-receipt' onClick={() => navigate(`/receipt/${proposal._id}`)}>View Receipt</button>
                     </div>
                 )}
 
 
                 {isBusinessOwner && isAccepted && isUnpaid && (
                     <div>
-                        <p>Your project proposal has been accepted! Please proceed to payment to start website development.</p>
+                        <p>Your project proposal has been accepted! Please proceed to payment.</p>
                         {!showPayment ? (
                             <button onClick={handlePayment}> Pay BHD{proposal.budget} Now </button>
                         ) : (
