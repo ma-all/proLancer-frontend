@@ -80,14 +80,14 @@ const ProfileFormDev = (props) => {
             console.log('user Id missing')
             return
         }
-        try {
-            const updatedUser = await userService.update(props.user._id, formData)
-            if (props.setUser)
-                props.setUser(updatedUser)
-            navigate('/developer/profile')
-        } catch (error) {
-            console.log('Error updating profile:', error)
-        }
+        const updatedUser = await userService.update(props.user._id, formData)
+        if (props.setUser)
+            props.setUser(updatedUser)
+        navigate('/developer/profile')
+    }
+
+    if (!props.user) {
+        <p>Loading profile form..</p>
     }
 
     return (

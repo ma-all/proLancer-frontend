@@ -10,15 +10,12 @@ const ProfileDetailsDev = (props) => {
 
     const handleSendChat = async () => {
         if (!developer?._id) {
-            return <p>Cannot create chat at the moment. <br /> Please try again Later</p>
+            setErrorMessage('Cannot create chat at the moment.')
+            return
         }
-        try {
-            const chat = await chatService.create({ developerId: developer._id })
-            console.log('Created Chat Response:', chat)
-            navigate(`/chat/${chat._id}`)
-        } catch (error) {
-            console.log(error)
-        }
+        const chat = await chatService.create({ developerId: developer._id })
+        console.log('Created Chat Response:', chat)
+        navigate(`/chat/${chat._id}`)
     }
 
     return (

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { FolderOpenDot, ScrollText, MessagesSquare } from 'lucide-react'
 import { useNavigate } from "react-router"
 
@@ -7,16 +6,9 @@ const DevDashboard = (props) => {
 
     const navigate = useNavigate()
 
-    const [allUsers, setAllUsers] = useState([])
-
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         const usersData =  await index()
-    //         setAllUsers(usersData)
-    //     }
-    //     fetchUsers()
-
-    // }, [])
+    if (!props.user) {
+        return <p>Loading dashboard...</p>
+    }
 
     return (
         <section className="dashboard-container">
@@ -49,15 +41,6 @@ const DevDashboard = (props) => {
                     </div>
                     <p className="stat-lable">My Chats</p>
                 </div>
-                {/* {allUsers.map((user) => (
-                    <div className="card">
-                        <header>
-                            <h1>
-                                {user.username}
-                            </h1>
-                        </header>
-                    </div>
-                ))} */}
             </div>
         </section>
     )

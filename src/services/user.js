@@ -83,8 +83,7 @@ const deleteDeployedLink = async(userId, link)=>{
             throw new Error(data.err)
         }
 
-        return data
-        
+        return data    
     } catch (error) {
         throw new Error(data.error)
         
@@ -110,8 +109,6 @@ const deleteSkill = async(userId, skill)=>{
         }
 
         return data
-
-        
     } catch (error) {
          throw new Error(data.error)
         
@@ -121,26 +118,3 @@ const deleteSkill = async(userId, skill)=>{
 export {
     show,update,deleteGithubLink,deleteDeployedLink, deleteSkill, 
 }
-
-
-
-
-// const index = async (formData) => {
-//     try {
-//         const res = await fetch(`${BASE_URL}/users`, {
-//             method: 'GET',
-//             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-//         })
-//         const data = await res.json()
-        
-
-//         if (data.err) {
-//             console.log(data.err)
-//             throw new Error(data.err)
-//         }
-
-//         return data
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }

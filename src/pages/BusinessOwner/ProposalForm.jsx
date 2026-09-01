@@ -63,6 +63,10 @@ const ProposalForm = (props) => {
         }
     }
 
+    if (!selectDevId) {
+        <p>Loading form..</p>
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit} className='proposal-form-container'>

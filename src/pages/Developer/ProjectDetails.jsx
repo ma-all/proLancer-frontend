@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import * as proposalService from '../../services/proposal'
 import * as chatService from '../../services/chat'
-import { ArrowDown } from 'lucide-react'
 
 const ProjectsDetails = (props) => {
 
@@ -16,27 +15,19 @@ const ProjectsDetails = (props) => {
 
     const handleChangeStatus = async (event) => {
         const updatedStatus = event.target.value
-        try {
-            const newStatus = await proposalService.updateStatus(project._id, { status: updatedStatus })
-            if (props.setProposals) {
-                props.setProposals((prev) =>
-                    prev.map((proj) =>
-                        (proj._id === project._id ? newStatus : proj)
-                    ))
-            }
-        } catch (error) {
-            console.log(error)
+        const newStatus = await proposalService.updateStatus(project._id, { status: updatedStatus })
+        if (props.setProposals) {
+            props.setProposals((prev) =>
+                prev.map((proj) =>
+                    (proj._id === project._id ? newStatus : proj)
+                ))
         }
     }
 
     const handleSendChat = async () => {
-        try {
-            const ownerId = (project.businessOwner?._id || project.businessOwner)?.toString()
-            const chat = await chatService.create({ developerId: currentUserId, ownerId: ownerId, businessOwnerId: ownerId })
-            navigate(`/chat/${chat._id}`)
-        } catch (error) {
-            console.log(error)
-        }
+        const ownerId = (project.businessOwner?._id || project.businessOwner)?.toString()
+        const chat = await chatService.create({ developerId: currentUserId, ownerId: ownerId, businessOwnerId: ownerId })
+        navigate(`/chat/${chat._id}`)
     }
 
     if (!project)

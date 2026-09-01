@@ -59,26 +59,6 @@ const Chats = (props) => {
         fetchChatDetails()
     }, [chatId])
 
-    // useEffect(() => {
-    //     const fetchChat = async () => {
-    //         if (!chatId)
-    //             // setLoading(false)
-    //             return
-    //         try {
-    //             setLoading(true)
-    //             const chatData = await chatService.show(chatId)
-    //             if (chatData && chatData.messages) {
-    //                 setMessages(chatData.messages)
-    //             }
-    //         } catch (error) {
-    //             console.log(error)
-    //         } finally {
-    //             setLoading(false)
-    //         }
-    //     }
-    //     fetchChat()
-    // }, [chatId])
-
     useEffect(() => {
         if (!chatId)
             return
@@ -111,11 +91,9 @@ const Chats = (props) => {
         }
 
         return () => {
-            // console.log('Leaving chat and closing socket')
             socket.off('connect', handleConnect)
             socket.off('disconnect', handleDisconnect)
             socket.off('chat message', handleChatMessage)
-            // socket.disconnect()
         }
     }, [chatId, currentUserId])
 
@@ -139,12 +117,6 @@ const Chats = (props) => {
         } catch (error) {
             console.log(error)
         }
-        // const messageData = {
-        //     username: props.user.username,
-        //     text: formData.trim(),
-        // }
-        // socket.emit('chat message', messageData)
-        // setFormData('')
     }
 
     const otherUser = (chatItem) => {
@@ -160,14 +132,7 @@ const Chats = (props) => {
     return (
         <div className='chat-layout'>
             <div className='chat-sidebar'>
-            <h1 className='sidebar-title'>Chats</h1>
-
-            {/* <p>Status: {isConnected ? 'Connected' : 'Disconnected'}</p> */}
-
-            {/* <section> */}
-                {/* {messages.length === 0 && (
-                    <p>No messages yet. Start the conversation!</p>
-                )} */}
+                <h1 className='sidebar-title'>Chats</h1>
 
                 <div className='chat-list'>
                     {chat.length === 0 ? (
@@ -184,36 +149,36 @@ const Chats = (props) => {
                         })
                     )}
                 </div>
-                </div>
+            </div>
 
-                <div className='chat-main'>
+            <div className='chat-main'>
 
                 {activeChat ? (
                     <>
-                    <div className='chat-header'>
-                        <center><h3>{otherUser(activeChat)?.username}</h3></center>
+                        <div className='chat-header'>
+                            <center><h3>{otherUser(activeChat)?.username}</h3></center>
                         </div>
 
                         <div className='messages-container'>
 
-                        {messages.length === 0 ? (
-                            <center><p className='no-messages'>No messages yet</p></center>
-                        ) : (
+                            {messages.length === 0 ? (
+                                <center><p className='no-messages'>No messages yet</p></center>
+                            ) : (
 
-                            messages.map((message) => {
-                                const senderId = message.senderId?._id || message.senderId
-                                const myChat = String(senderId) === String(currentUserId)
-                                return (
-                                    <div className={`message-bubble ${myChat ? 'outgoing': 'incoming'}`} key={message._id}>
-                                        <span className='sender-name'>
-                                            {myChat ? 'You' : (message.senderId?.username || 'User')}
-                                        </span>
-                                        <p className='message-text'>{message.msg}</p>
-                                    </div>
-                                )
-                            })
+                                messages.map((message) => {
+                                    const senderId = message.senderId?._id || message.senderId
+                                    const myChat = String(senderId) === String(currentUserId)
+                                    return (
+                                        <div className={`message-bubble ${myChat ? 'outgoing' : 'incoming'}`} key={message._id}>
+                                            <span className='sender-name'>
+                                                {myChat ? 'You' : (message.senderId?.username || 'User')}
+                                            </span>
+                                            <p className='message-text'>{message.msg}</p>
+                                        </div>
+                                    )
+                                })
 
-                        )}
+                            )}
                         </div>
 
                         <form onSubmit={handleSubmit} className='chat-input-form'>
@@ -223,13 +188,12 @@ const Chats = (props) => {
                     </>
                 ) : (
                     <div className='no-active-chat'>
-                    <p>Start a chat</p>
+                        <p>Start a chat</p>
                     </div>
                 )}
-                </div>
-            {/* </section> */}
             </div>
-        
+        </div>
+
     )
 }
 

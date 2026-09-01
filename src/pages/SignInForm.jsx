@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router"
+import { useNavigate, Link } from "react-router"
 import { useState } from "react"
 import { signIn } from "../services/auth"
+import * as userService from '../services/user'
 
 const SignInForm = (props) => {
 
@@ -22,7 +23,13 @@ const SignInForm = (props) => {
         event.preventDefault()
         try {
             const signedInUser = await signIn(formData)
-            props.setUser(signedInUser)
+            if (signedInUser?._id) {
+                const fullUser = await userService.show(signedInUser._id)
+                props.setUser(fullUser)
+            } else {
+                props.setUser(signedInUser)
+            }
+            
             setFormData(initialState)
             navigate('/')
         } catch(err) {
@@ -51,6 +58,13 @@ const SignInForm = (props) => {
                 <div className="actions">
                     <button type="submit" className="submit-btn">Sign In</button>
                     <button type="button" className="cancel-btn" onClick={() => navigate('/')}>Cancel</button>
+                </div>
+
+                <div className="signup-link-wrapper">
+                    <p>Don't have an account yet?
+                        <br />
+                        <Link to='/sign-up'>Sign Up</Link>
+                    </p>
                 </div>
             </form>
         </section>
