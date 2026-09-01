@@ -1,91 +1,117 @@
-import { Link } from "react-router"
-
+import { useState } from "react"
+import { Link, useNavigate } from "react-router"
+import { Menu } from 'lucide-react'
+import { CircleUserRound } from "lucide-react"
+import { X } from "lucide-react"
+import { LogOut } from 'lucide-react'
 
 const Nav = (props) => {
 
+    const [isOpen, setIsOpen] = useState(false)
+
+    const navigate = useNavigate()
+
+    const isBusinessOwner = props.user?.role === 'Business Owner'
+
+    const isDeveloper = props.user?.role === 'Developer'
+
+    const toggleSidebar = () => {
+        setIsOpen((prev) => !prev)
+    }
+
+    const closeSidebar = () => {
+        setIsOpen(false)
+    }
+
     const handleSignOut = () => {
+        closeSidebar()
         localStorage.removeItem('token')
         props.setUser(null)
+        navigate('/')
     }
 
     return (
-        <nav>
-            <Link className="nav-brand" to="/">Logo</Link>
-            {props.user ? (
-                <ul>
-                    {props.user.role === 'Business Owner' && (
-                        <>
-                            <li>
-                                <Link to="/">Dashboard</Link>
-                            </li>
+        <>
+            <header className="header-top">
+                <div className="header-left">
+                    <button onClick={toggleSidebar} className='menu-btn'>
+                        <Menu size={25} />
+                    </button>
+                    {/* i need to add the link to dashboard here */}
+                    <Link onClick={closeSidebar} className="nav-brand">
+                        PROLANCER
+                    </Link>
+                </div>
+                {props.user && (
+                    <div className="user-info">
+                        {/* <span className="user-role">
+                            {props.user.role}
+                        </span> */}
+                        <div className="user-profile">
+                            <CircleUserRound size={25} />
+                        </div>
 
-                            <li>
-                                <Link to='/developers'>Developers</Link>
-                            </li>
+                    </div>
+                )}
+            </header>
 
-                            <li>
-                                <Link to='/projectProposal'>Proposals</Link>
-                            </li>
+            {isOpen &&
+                <>
+                    <div onClick={closeSidebar} className="sidebar-overlay" />
 
-                            <li>
-                                {/* //need to change this link */}
-                                <Link to='/projectProposal'>Projects</Link>
-                            </li>
+                    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+                        <div className="sidebar-header">
+                            <button onClick={closeSidebar} className="close-btn">
+                                <X />
+                            </button>
+                        </div>
 
-                            <li>
-                                <Link to='/chat'>Chats</Link>
-                            </li>
+                        <nav className="sidebar-links">
+                            {props.user ? (
+                                <>
+                                    {isBusinessOwner && (
+                                        <>
+                                            <div className="menu-section-title">Business Owner</div>
 
-                            <li>
-                             <Link to="/business-owner/profile">Profile</Link>
-                            </li>
-                        </>
-                    )}
+                                            <Link to="/">Dashboard</Link>
+                                            <Link to='/developers' onClick={closeSidebar}>Developers</Link>
+                                            <Link to='/projectProposal' onClick={closeSidebar}>Proposals</Link>
+                                            {/* //need to change this link */}
+                                            <Link to='/projectProposal' onClick={closeSidebar}>Projects</Link>
+                                            <Link to='/chat' onClick={closeSidebar}>Chats</Link>
+                                            <Link to="/business-owner/profile" onClick={closeSidebar}>Profile</Link>
+                                        </>
+                                    )}
 
+                                    {isDeveloper && (
+                                        <>
+                                            <div className="menu-section-title">Developer </div>
+                                            <Link to="/" onClick={closeSidebar}>Dashboard</Link>
+                                            <Link to='/requests' onClick={closeSidebar}>Requests</Link>
+                                            <Link to='/projectslist' onClick={closeSidebar}>Projects</Link> 
+                                            <Link to='/chat' onClick={closeSidebar}>Chats</Link>
+                                            <Link to="/developer/profile" onClick={closeSidebar}>profile</Link>
+                                        </>
+                                    )}
 
-                    {props.user.role === 'Developer' && (
-                        <>
-                            <li>
-                                <Link to="/">Dashboard</Link>
-                            </li>
+                                    <button onClick={handleSignOut} className="signout-btn">
+                                        <LogOut size={25} />
+                                        Sign Out
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <div>Please Sign Up or Sign In</div>
+                                    <Link  to='/sign-up' onClick={handleSignOut}>Sign Up</Link>
+                                    <Link to='/sign-in' onClick={handleSignOut}>Sign In</Link>
+                                </>
+                            )}
+                        </nav>
+                    </aside>
+                </>
+            }
 
-                            <li>
-                                <Link to='/requests'>Requests</Link>
-                            </li>
-
-                            <li>
-                                <Link to='/projectslist'>Projects</Link> 
-                            </li>
-
-                            <li>
-                                <Link to='/chat'>Chats</Link>
-                            </li>
-
-                            {/* <li>
-                                <link to="/developer/profile">profile</link>
-                            </li> */}
-                        </>
-                    )}
-
-                    <li>
-                        <Link to="/" onClick={handleSignOut}>Sign Out</Link>
-                    </li>
-                </ul>
-            ) : (
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                    <li>
-                        <Link to='/sign-up'>Sign Up</Link>
-                    </li>
-                    <li>
-                        <Link to='/sign-in'>Sign In</Link>
-                    </li>
-                </ul>
-            )}
-
-        </nav>
+        </>
     )
 }
 
