@@ -27,33 +27,40 @@ const ProposalList = (props) => {
 
     return (
         <>
-            <h2>Proposals</h2>
-            <div className='proposals-filter-container'>
-                <div className='filter-part'>
-                    <select value={sFilter} onChange={handleChange} className='filter-select'>
-                        <option value='All'>All</option>
-                        <option value='Pending'>Pending</option>
-                        <option value='Accepted'>Accepted</option>
-                        <option value='Rejected'>Rejected</option>
-                        <option value='In Progress'>In Progress</option>
-                        <option value='Completed'>Completed</option>
-                    </select>
-                    <Funnel size={18} className='filter-icon' />
+            <div className='proposals-page'>
+                <div className='proposals-page-header'>
+                    <h2>Proposals</h2>
+                    <div className='proposals-filter-container'>
+                        <div className='filter-part'>
+                            <select value={sFilter} onChange={handleChange} className='filter-select'>
+                                <option value='All'>All</option>
+                                <option value='Pending'>Pending</option>
+                                <option value='Accepted'>Accepted</option>
+                                <option value='Rejected'>Rejected</option>
+                                <option value='In Progress'>In Progress</option>
+                                <option value='Completed'>Completed</option>
+                            </select>
+                            <Funnel size={18} className='filter-icon' />
+                        </div>
+                    </div>
                 </div>
-            </div>
+            
             <div className='proposal-list-container'>
                 {filterproposals.map((proposal) =>
                     <div key={proposal._id} className='proposal-list-card'>
                         <div className='proposal-name-status'>
-                        <p className='proposal-list-name'>{proposal.name}</p>
-                        {/* <p>{proposal.status}</p> */}
+                            <p className='proposal-list-name'>{proposal.name}</p>
+                            {/* <p>{proposal.status}</p> */}
                         </div>
+
+                        <br />
 
                         <Link to={`/projectProposal/${proposal._id}`}>
                             <button type='submit' className='proposal-list-button'> View Details</button>
                         </Link>
                     </div>
                 )}
+            </div>
             </div>
         </>
     )

@@ -18,7 +18,7 @@ const BusDashboard = (props) => {
                 <div className="stat-card color" onClick={() => navigate('/projectProposal')}>
                     <div className="stat header">
                         <span className="icon-box">
-                            <ScrollText size={25} />
+                            <ScrollText size={25} className="dash-icon"/>
                         </span>
                     </div>
                     <p className="stat-lable">My Proposals</p>
@@ -28,7 +28,7 @@ const BusDashboard = (props) => {
                 <div className="stat-card color" onClick={() => navigate('/requests')}>
                     <div className="stat-header">
                         <span className="icon-box">
-                            <FolderOpenDot size={25} />
+                            <FolderOpenDot size={25} className="dash-icon"/>
                         </span>
                     </div>
                     <p className="stat-lable">My Projects</p>
@@ -36,7 +36,7 @@ const BusDashboard = (props) => {
                 <div className="stat-card color" onClick={() => navigate('/chat')}>
                     <div className="stat-header">
                         <span className="icon-box">
-                            <MessagesSquare size={25} />
+                            <MessagesSquare size={25} className="dash-icon"/>
                         </span>
                     </div>
                     <p className="stat-lable">My Chats</p>

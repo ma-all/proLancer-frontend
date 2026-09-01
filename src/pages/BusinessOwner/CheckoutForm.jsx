@@ -33,10 +33,12 @@ const CheckoutForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement />
-            {errorMessage && <p>{errorMessage}</p>}
-            <button type='submit' disabled={!stripe || processing} > {processing ? 'Processing Payment..' : 'Pay Now'}</button>
+        <form onSubmit={handleSubmit} className="checkout-form">
+            <div className="card-element">
+                <CardElement />
+            </div>
+            {errorMessage && <p className="payment-msg-error">{errorMessage}</p>}
+            <button className="pay-amt-btn" type='submit' disabled={!stripe || processing} > {processing ? 'Processing Payment..' : 'Pay Now'}</button>
         </form>
     )
 }

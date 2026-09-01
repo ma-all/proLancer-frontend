@@ -75,7 +75,7 @@ const ProfileFormDev = (props) => {
         }
 
         if (Array.isArray(event)) {
-            setFormData({...formData, skills: event})
+            setFormData({ ...formData, skills: event })
             return
         }
 
@@ -83,14 +83,14 @@ const ProfileFormDev = (props) => {
             const value = event.target.value
             const updatedSkills = formData.skills.includes(value) ? formData.skills.filter((skill) => skill !== value) : [...formData.skills, value]
 
-            setFormData({...formData, skills: updatedSkills})
+            setFormData({ ...formData, skills: updatedSkills })
         }
-        
+
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!props.user?._id){
+        if (!props.user?._id) {
             console.log('user Id missing')
             return
         }
@@ -105,61 +105,65 @@ const ProfileFormDev = (props) => {
     }
 
     return (
-        <div>
-            <h2>Profile</h2>
-            <form onSubmit={handleSubmit}>
-                Title:
-                <input type='text' name='developerTitle' value={formData.developerTitle} onChange={handleChange} />
+        <div className="profile-form-wrapper">
+            <div className="profile-card">
+                <h2 className="profile-heading">Profile</h2>
+                <form onSubmit={handleSubmit} className="profile-form">
+                    <div className="input-group">
+                        <label className="desc-profile">Title:</label>
+                        <input className="title-dev-profile" type='text' name='developerTitle' value={formData.developerTitle} onChange={handleChange} />
+                        <br />
+                        <br />
+                        <label className="desc-profile">Description:</label>
+                        <textarea name="developerDescription" rows={4} value={formData.developerDescription} onChange={handleChange} />
+                    </div>
 
-                <label>Description</label>
-                <textarea name="developerDescription" rows={4} value={formData.developerDescription} onChange={handleChange} />
-
-
-                <div>
-                    <label>GitHub Url</label>
                     <div>
-                        <input type="url" name="githubUrl" value={currentGitHubInput} onChange={(e) => setcurrentGitHubInput(e.target.value)} />
+                        <label className="desc-profile">GitHub Url:</label>
+                        <div>
+                            <input className="title-dev-profile" type="url" name="githubUrl" value={currentGitHubInput} onChange={(e) => setcurrentGitHubInput(e.target.value)} />
 
-                        <button type="button" onClick={handleAddGithubUrl}>Add Link</button>
+                            <button className='btn-accept' type="button" onClick={handleAddGithubUrl}>Add Link</button>
+                        </div>
+                        <ul>
+                            {formData.githubUrl.map((url, index) => (
+                                <li key={index}>
+                                    <span>{url}</span>
+                                    <button className='btn-accept' type='button' onClick={() => handleRemoveGithubUrl(index)}>Remove Link</button>
+
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <label className="desc-profile">Deployed Websites Links:</label>
+                    <div>
+                        <input className="title-dev-profile" type="url" name="deployedLinks" value={currentDeployed} onChange={(event) => setCurrentDeployed(event.target.value)} />
+
+                        <button className='btn-accept' type='button' onClick={handleAddDeployedLinks}>Add Link</button>
                     </div>
                     <ul>
-                        {formData.githubUrl.map((url, index) => (
+                        {formData.deployedLinks.map((link, index) => (
                             <li key={index}>
-                                <span>{url}</span>
-                                <button type='button' onClick={() => handleRemoveGithubUrl(index)}>Remove Link</button>
+                                <span>{link}</span>
 
+                                <button className='btn-accept' type='button' onClick={() => handleRemoveDeployedLinks(index)}>Remove Link</button>
                             </li>
                         ))}
                     </ul>
-                </div>
 
-                Deployed Websites Links:
-                <div>
-                    <input type="url" name="deployedLinks" value={currentDeployed} onChange={(event) => setCurrentDeployed(event.target.value)} />
+                    <label className="desc-profile">Skills:</label>
+                    <select name="skills" multiple value={formData.skills} onChange={handleSkills}>
+                        {skillsOptions.map((skill) => (
+                            <option key={skill} value={skill}>{skill}</option>
+                        ))}
+                    </select>
 
-                    <button type='button' onClick={handleAddDeployedLinks}>Add Link</button>
-                </div>
-                <ul>
-                    {formData.deployedLinks.map((link, index) => (
-                        <li key={index}>
-                            <span>{link}</span>
-
-                            <button type='button' onClick={() => handleRemoveDeployedLinks(index)}>Remove Link</button>
-                        </li>
-                    ))}
-                </ul>
-
-                Skills:
-                <select name="skills" multiple value={formData.skills} onChange={handleSkills}>
-                    {skillsOptions.map((skill) => (
-                        <option key={skill} value={skill}>{skill}</option>
-                    ))}
-                </select>
-
-                <div>
-                    <button type="submit">Save Profile</button>
-                </div>
-            </form>
+                    <div>
+                        <button className="save-profile-btn" type="submit">Save Profile</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 

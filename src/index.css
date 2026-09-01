@@ -3,10 +3,15 @@
 :root {
   font-family: "PT Serif Caption", serif;
 
-  --dark: #272B36;
-  --grey: #595D66;
-  --light-grey: #B7B8BB;
-  --light: #D7D7D6;
+  --background-color: #f9f9f9;
+  --background-button: #f1f5f9;
+  --background-button-border: #eaebec;
+  --background-button-hover: #0f172a;
+  --text-button: #0f172a;
+  --text-button-hover: #f1f5f9;
+  --cards: white;
+  --cards-border-line: #e2e8f0;
+  --main-text: #14213f;
 }
 
 * {
@@ -16,7 +21,7 @@
 body {
   min-height: 100vh;
   margin: 0;
-  background-color: var(--light);
+  background-color: var(--background-color);
   color: var(--color-text);
 }
 

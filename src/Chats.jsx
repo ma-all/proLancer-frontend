@@ -190,7 +190,7 @@ const Chats = (props) => {
 
                 {activeChat ? (
                     <>
-                    <div className='chat header'>
+                    <div className='chat-header'>
                         <center><h3>{otherUser(activeChat)?.username}</h3></center>
                         </div>
 

@@ -2,79 +2,86 @@ import { useNavigate, useParams } from "react-router"
 
 
 const ProfileDetailsDev = (props) => {
+
     const { developerId } = useParams()
+
     const navigate = useNavigate()
 
     const developer = developerId ? props.developers?.find((dev) =>
         dev._id === developerId) : props.user
 
-    //we'll use this to view the details of developer from the business owner side
-    // const ownProfile = !developerId || props.user?._id === developer?._id
+    if (!developer) {
+        return <p>Loading Profile..</p>
+    }
 
     return (
-        <div>
-            <h2>{developer.username}'s Profile</h2>
+        <div className="dev-details-container">
+            <div className="dev-details-card">
+                <div className="dev-header">
+                    <h2>{developer?.username || developer?.name}'s Profile</h2>
+                </div>
 
-            {developer.developerTitle && (
-                <h3>{developer.developerTitle}</h3>
-            )}
-
-            <div>
-                <h3>Description</h3>
-                <p>{developer?.developerDescription}</p>
-            </div>
-
-            <div>
-                <h3>GitHub Repositories</h3>
-                {developer.githubUrl && developer.githubUrl.length > 0 ? (
-                    <ul>
-                        {developer?.githubUrl?.map((url, index) => (
-                            <li key={index}>
-                                <a href={url}>{url}</a>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No github links added</p>
+                {developer.developerTitle && (
+                    <h3 className="dev-title-pro">{developer.developerTitle}</h3>
                 )}
 
-            </div>
+                <div className="dev-section">
+                    <h3 className="section-heading">Description</h3>
+                    <p className="description-text">{developer?.developerDescription}</p>
+                </div>
 
-            <div>
-                <h3>Deployed Websites</h3>
-                {developer.deployedLinks && developer.deployedLinks.length > 0 ? (
-                    <ul>
-                        {developer?.deployedLinks?.map((url, index) => (
-                            <li key={index}>
-                                <a href={url}>{url}</a>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No deployed websites</p>
-                )}
-            </div>
+                <div className="dev-section">
+                    <h3 className="section-heading">GitHub Repositories</h3>
+                    {developer.githubUrl && developer.githubUrl.length > 0 ? (
+                        <ul className="link-list">
+                            {developer?.githubUrl?.map((url, index) => (
+                                <li key={index} className="link-item">
+                                    <a href={url} className="link-url">{url}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="empty-msg">No github links added</p>
+                    )}
 
-            <div>
-                <h3> skills</h3>
-                {developer.skills && developer.skills.length > 0 ? (
-                    <ul>
-                        {developer?.skills?.map((skill, index) => (
-                            <li key={index}>
-                                {skill}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No skills added</p>
-                )}
+                </div>
 
-            </div>
+                <div className="dev-section">
+                    <h3 className="section-heading">Deployed Websites</h3>
+                    {developer.deployedLinks && developer.deployedLinks.length > 0 ? (
+                        <ul className="link-list">
+                            {developer?.deployedLinks?.map((url, index) => (
+                                <li key={index} className="link-item">
+                                    <a href={url} className="link-url">{url}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="empty-msg">No deployed websites</p>
+                    )}
+                </div>
 
-            <div>
-                {/* <button  onClick={handleEdit}>Edit</button> */}
-                <button onClick={() => navigate(-1)}>Back</button>
-                <button onClick={() => navigate('/developer/profile/form')}> Edit Profile </button>
+                <div className="dev-section">
+                    <h3 className="section-heading"> skills</h3>
+                    {developer.skills && developer.skills.length > 0 ? (
+                        <ul className="link-list">
+                            {developer?.skills?.map((skill, index) => (
+                                <li key={index} className="link-item">
+                                    {skill}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="empty-msg">No skills added</p>
+                    )}
+
+                </div>
+
+                <div className="profile-btns">
+                    {/* <button  onClick={handleEdit}>Edit</button> */}
+                    <button className="btn-message" onClick={() => navigate(-1)}>Back</button>
+                    <button className="btn-message" onClick={() => navigate('/developer/profile/form')}> Edit Profile </button>
+                </div>
             </div>
         </div>
     )

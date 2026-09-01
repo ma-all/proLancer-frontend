@@ -40,7 +40,7 @@ const ProfileDetailsBus = (props) => {
 
             <div className="profile-actions">
 
-            <button className="btn-secondary" onClick={() => navigate(-1)}>Back</button>
+            {/* <button className="btn-secondary" onClick={() => navigate(-1)}>Back</button> */}
             <button className="btn-primary" onClick={() => navigate('/business-owner/profile/form')}> Edit Profile </button>
         </div>
         </div>
