@@ -26,6 +26,10 @@ const DeveloperList = (props) => {
         return usernameMatch || titleMatch
     })
 
+    if (!developers) {
+        return <p>Loading developers..</p>
+    }
+
     return (
         <div className="developer-page">
             <div className="developer-page-header">
@@ -43,22 +47,22 @@ const DeveloperList = (props) => {
                 </div>
             </div>
             
-            <div className="developers-container">
+            <div className="developers-containerr">
                 {filteredDevelopers.map((dev) => (
-                    <div key={dev._id} className="developer-card">
-                        <div className="icon-wrapper">
+                    <div key={dev._id} className="developer-card-list">
+                        <div className="icon-wrapper-dev">
                             <div className="dev-icon">
                                 <User size={25} />
                             </div>
                         </div>
 
+                    <br />
 
                     <h3>{dev.username}</h3>
                     <p className="deeloper-titel"> {dev.developerTitle}</p>
                     <br />
 
                     <button className="card-btn" onClick={() => handleSendProposal(dev._id)}>Send Proposal <span className="arrow"></span></button>
-                    <br/>
                     <button  className="card-btn" onClick={() => handleViewDetails(dev._id)}>View Details</button>
                 </div>
             ))}

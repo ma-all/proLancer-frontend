@@ -32,11 +32,15 @@ const ProfileForm = (props) => {
             const updatedUser = await userService.update(user._id, formData)
             if (setUser)
                 setUser(updatedUser)
-            navigate('/dashboard')
+            navigate('/business-owner/profile')
         } catch (error) {
             console.log('error updating profile:', error)
 
         }
+    }
+
+    if (!user) {
+        <p>Loading profile form...</p>
     }
 
     return (

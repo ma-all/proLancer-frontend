@@ -7,6 +7,10 @@ const BusDashboard = (props) => {
 
     const navigate = useNavigate()
 
+    if (!props.user) {
+        return <p>Loading dashboard...</p>
+    }
+
     return (
         <section className="dashboard-container">
             <header className="dashboard-header">

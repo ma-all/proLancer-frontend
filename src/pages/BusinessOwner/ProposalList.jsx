@@ -10,7 +10,6 @@ const ProposalList = (props) => {
 
     const filterproposals = props.proposals?.filter((proposal) => {
         const ownerId = (proposal.businessOwner?._id || proposal.businessOwner?.id || proposal.businessOwner)?.toString()
-        // return ownerId === currentUserId
         const matched = ownerId === currentUserId
 
         if (sFilter === 'All')
@@ -22,6 +21,10 @@ const ProposalList = (props) => {
 
     const handleChange = (event) => {
         setSFilter(event.target.value)
+    }
+
+    if (!currentUserId) {
+        <p>Loading proposals..</p>
     }
 
     return (

@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 import { Menu } from 'lucide-react'
-import { CircleUserRound } from "lucide-react"
 import { X } from "lucide-react"
 import { LogOut } from 'lucide-react'
 
@@ -37,7 +36,6 @@ const Nav = (props) => {
                     <button onClick={toggleSidebar} className='menu-btn'>
                         <Menu size={25} />
                     </button>
-                    {/* i need to add the link to dashboard here */}
                     <Link onClick={closeSidebar} className="nav-brand">
                         PROLANCER
                     </Link>

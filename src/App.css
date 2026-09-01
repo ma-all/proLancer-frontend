@@ -34,14 +34,14 @@
   margin: 0;
 }
 
-.developers-container {
+.developers-containerr {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  max-width: 800px;
+  width: 1150px;
   gap: 16px;
 }
 
-.developer-card {
+.developer-card-list{
   background-color: var(--card);
   border-radius: 16px;
   padding: 32px 24px;
@@ -58,7 +58,7 @@
   margin: 0 0 8px 0;
 }
 
-.icon-wrapper {
+.icon-wrapper-dev {
   width: 72px;
   height: 72px;
   background-color: #f1f5f9;

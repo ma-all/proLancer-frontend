@@ -25,6 +25,14 @@ const Requests = (props) => {
         }
     }
 
+    if (!currentUserId) {
+       <p>Loading requests..</p> 
+    }
+
+    if (!proposalRequests) {
+        <p>No requests available.</p>
+    }
+
     return (
         <div className='requests-wrapper'>
             <h2 className='requests-title'>Proposal Requests</h2>

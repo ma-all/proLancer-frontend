@@ -90,6 +90,10 @@ const ProfileFormDev = (props) => {
         }
     }
 
+    if (!props.user) {
+        <p>Loading profile form..</p>
+    }
+
     return (
         <div className="profile-form-wrapper">
             <div className="profile-card">

@@ -11,6 +11,10 @@ const ProjectsList = (props) => {
         return developerId === currentUserId && currentStatus.includes(proposal.status)
     }) || []
 
+    if (!currentUserId) {
+        <p>Loading projects..</p>
+    }
+
     return (
         <div className='requests-wrapper' >
             <h2 className='requests-title'>Projects</h2>
