@@ -2,18 +2,21 @@ import { useNavigate, useParams } from "react-router"
 
 
 const ProfileDetailsDev = (props) => {
+
     const { developerId } = useParams()
+
     const navigate = useNavigate()
 
     const developer = developerId ? props.developers?.find((dev) =>
         dev._id === developerId) : props.user
 
-    //we'll use this to view the details of developer from the business owner side
-    // const ownProfile = !developerId || props.user?._id === developer?._id
+    if (!developer) {
+        return <p>Loading Profile..</p>
+    }
 
     return (
         <div>
-            <h2>{developer.username}'s Profile</h2>
+            <h2>{developer?.username || developer?.name}'s Profile</h2>
 
             {developer.developerTitle && (
                 <h3>{developer.developerTitle}</h3>

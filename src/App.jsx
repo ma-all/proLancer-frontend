@@ -71,9 +71,10 @@ const App = () => {
 
   useEffect(() => {
     const fetchuserData = async () => {
-      if (user?._id) {
+      const initialUser = getUserFromToken()
+      if (initialUser?._id) {
         try {
-          const fullUser = await userService.show(user._id)
+          const fullUser = await userService.show(initialUser._id)
           setUser(fullUser)
         } catch (error) {
           console.log(error)
@@ -93,6 +94,7 @@ const App = () => {
           <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
           <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
+          <Route path='/developer/profile' element={developer ? <ProfileDetailsDev user={user} setUser={setUser} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} user={user}/> : <Navigate to='/sign-in' />} />
           <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} user={user} setProposals={setProposals} /> : <Navigate to='/sign-in' />} />
