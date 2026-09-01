@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router"
+import { useNavigate, Link } from "react-router"
 import { useState } from "react"
 import { signIn } from "../services/auth"
 
@@ -51,6 +51,13 @@ const SignInForm = (props) => {
                 <div className="actions">
                     <button type="submit" className="submit-btn">Sign In</button>
                     <button type="button" className="cancel-btn" onClick={() => navigate('/')}>Cancel</button>
+                </div>
+
+                <div className="signup-link-wrapper">
+                    <p>Don't have an account yet?
+                        <br />
+                        <Link to='/sign-up'>Sign Up</Link>
+                    </p>
                 </div>
             </form>
         </section>

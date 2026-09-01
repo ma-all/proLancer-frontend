@@ -88,7 +88,7 @@ const Nav = (props) => {
                                 </>
                             ) : (
                                 <>
-                                    <div>Please Sign Up or Sign In</div>
+                                    <Link to='/' onClick={handleSignOut}>Home</Link>
                                     <Link  to='/sign-up' onClick={handleSignOut}>Sign Up</Link>
                                     <Link to='/sign-in' onClick={handleSignOut}>Sign In</Link>
                                 </>

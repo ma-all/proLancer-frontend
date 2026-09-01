@@ -26,6 +26,15 @@ const SignUpForm = (props) => {
             const newUser = await signUp(formData)
             props.setUser(newUser)
             setFormData(initialState)
+            const userRole = newUser?.role || formData.role
+            if (userRole === 'Developer') {
+                navigate('/developer/profile/form')
+            } else if (userRole === 'Business Owner') {
+                navigate('/business-owner/profile/form')
+            } else {
+                navigate('/')
+            }
+
             navigate('/')
         } catch (err) {
             setMessage(err.message)
@@ -82,7 +91,7 @@ const SignUpForm = (props) => {
 
                  <div className="actions"> 
                     <button type="submit"className="submit-btn" disabled={!isFormValid()}>Sign Up</button>
-                     <button  className="cancel-btn" >Cancel</button> 
+                    <button type='button' className="cancel-btn" >Cancel</button> 
                  </div> 
             </form>
         </section>
