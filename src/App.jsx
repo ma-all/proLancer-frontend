@@ -51,7 +51,7 @@ const App = () => {
         const data = await proposalService.index()
         setProposals(data)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     fetchProposals()
@@ -63,7 +63,7 @@ const App = () => {
         const data = await DevService.indexDev()
         setAllDevelopers(data)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     fetchDevelopers()
@@ -77,7 +77,7 @@ const App = () => {
           const fullUser = await userService.show(initialUser._id)
           setUser(fullUser)
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       }
     }
@@ -95,7 +95,7 @@ const App = () => {
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path='/developer/profile' element={developer ? <ProfileDetailsDev user={user} setUser={setUser} /> : <Navigate to='/' />} />
-          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/' />} />
+          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} setCheckProposals={setCheckProposals} /> : <Navigate to='/' />} />
           <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} user={user}/> : <Navigate to='/' />} />
           <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} user={user} setProposals={setProposals} /> : <Navigate to='/' />} />
           <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers} /> : <Navigate to='/' />} />
