@@ -13,7 +13,7 @@ const ProfileDetailsBus = (props) => {
         <div className="profile-details-wrapper">
             <div className="profile-loading-card">
                 <div className="spinner"></div>
-                return <p>Loading Profile....</p>
+                <p>Loading Profile....</p>
             </div>
         </div>
     }
@@ -37,6 +37,7 @@ const ProfileDetailsBus = (props) => {
                 <div className="profile-actions">
 
                     <button className="btn-primary" onClick={() => navigate('/business-owner/profile/form')}> Edit Profile </button>
+                    <button className="btn-primary" onClick={() => navigate('/')}> View Dashboard </button>
                 </div>
             </div>
         </div>

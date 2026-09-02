@@ -78,8 +78,8 @@ const ProfileDetailsDev = (props) => {
                 </div>
 
                 <div className="profile-btns">
-                    <button className="btn-message" onClick={() => navigate(-1)}>Back</button>
                     <button className="btn-message" onClick={() => navigate('/developer/profile/form')}> Edit Profile </button>
+                    <button className="btn-message" onClick={() => navigate('/')}> View Dashboard </button>
                 </div>
             </div>
         </div>
