@@ -575,6 +575,20 @@ hr {
   transition: all 0.2s ease;
 }
 
+.chat-user-name:hover {
+  background-color: var(--background-button-hover);
+  color: var(--text-button-hover);
+  cursor: pointer;
+}
+
+.chat-user-name.active {
+  background-color: #3d4d71;
+  color: var(--text-button-hover);
+  font-weight: 700;
+  box-shadow: 0 0 0 2px var(--background-button);
+}
+
+
 .chat-main {
   flex: 1;
   min-width: 0;

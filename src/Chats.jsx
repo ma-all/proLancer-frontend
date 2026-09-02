@@ -139,11 +139,12 @@ const Chats = (props) => {
 
                         <p className='no-chats'>No chats yet.</p>
                     ) : (
-                        chat.map((chat) => {
-                            const anotherUser = otherUser(chat)
+                        chat.map((chatItem) => {
+                            const anotherUser = otherUser(chatItem)
+                            const isActive = chatItem._id === chatId
                             return (
-                                <div key={chat._id} onClick={() => navigate(`/chat/${chat._id}`)}>
-                                    <p className='chat-user-name'>{anotherUser.username || 'Unknown User'}</p>
+                                <div key={chatItem._id} onClick={() => navigate(`/chat/${chatItem._id}`)}>
+                                    <p className={`chat-user-name ${isActive ? 'active' : ''}`}>{anotherUser.username || 'Unknown User'}</p>
                                 </div>
                             )
                         })
