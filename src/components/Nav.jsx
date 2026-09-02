@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router"
 import { Menu } from 'lucide-react'
 import { X } from "lucide-react"
 import { LogOut } from 'lucide-react'
+import logo from '../assets/logo.png'
 
 const Nav = (props) => {
 
@@ -37,6 +38,7 @@ const Nav = (props) => {
                         <Menu size={25} />
                     </button>
                     <Link onClick={closeSidebar} className="nav-brand">
+                        <img src={logo} alt='ProLancer Logo' className="logo" />
                         PROLANCER
                     </Link>
                 </div>

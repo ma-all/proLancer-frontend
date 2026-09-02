@@ -1881,6 +1881,15 @@ hr {
   font-weight: 700;
   color: var(--text-button-hover);
   text-decoration: none;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .user-info {
