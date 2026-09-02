@@ -55,7 +55,7 @@ const App = () => {
       }
     }
     fetchProposals()
-  }, [])
+  }, [user])
 
   useEffect(() => {
     const fetchDevelopers = async () => {
