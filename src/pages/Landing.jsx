@@ -1,10 +1,12 @@
 import { Link } from "react-router"
+import logoLanding from '../assets/logo-landing.png'
 
 const Landing = () => {
     return (
         <div className="landing-wrapper">
             <div className="landing-card">
                 <header className="landing-header">
+                    <img src={logoLanding} alt='ProLancer Logo' className="logo-landing" />
                     <h1 className="landing-title">
                         Welcome to <span className="highlight-text">ProLancer</span>
                     </h1>
