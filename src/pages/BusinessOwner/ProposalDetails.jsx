@@ -69,8 +69,10 @@ const ProposalDetails = (props) => {
 
     const handleChat = async () => {
         const devId = (proposal.developer?._id || proposal.developer)?.toString()
-        const chat = await chatService.create({ targetId: devId, 
-        role: 'developer' })
+        const chat = await chatService.create({
+            targetId: devId,
+            role: 'developer'
+        })
         navigate(`/chat/${chat._id}`)
     }
 
@@ -117,12 +119,15 @@ const ProposalDetails = (props) => {
                     <button onClick={handleChat} className='prop-detail-send-msg'>Send Message</button>
                 </div>
 
-
+                <br />
                 {isPaid && (
-                    <div className='proposal-receipt-section'>
-                        <p>Payment has been completed for this proposal. </p>
-                        <button className='payment-btn-receipt' onClick={() => navigate(`/receipt/${proposal._id}`)}>View Receipt</button>
-                    </div>
+                    <>
+                    <p> Website link will be sent in chat once completed. <br /> Please check your status updates. </p>
+                        <div className='proposal-receipt-section'>
+                            <p>Payment has been completed! </p>
+                            <button className='payment-btn-receipt' onClick={() => navigate(`/receipt/${proposal._id}`)}>View Receipt</button>
+                        </div>
+                    </>
                 )}
 
 
