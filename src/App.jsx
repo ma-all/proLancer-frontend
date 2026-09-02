@@ -95,7 +95,7 @@ const App = () => {
           <Route path='/business-owner/profile/form' element={businessOwner ? <ProfileForm user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path='/developer/profile/form' element={developer ? <ProfileFormDev user={user} setUser={setUser} /> : <Navigate to='/' />} />
           <Route path='/developer/profile' element={developer ? <ProfileDetailsDev user={user} setUser={setUser} /> : <Navigate to='/' />} />
-          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} setCheckProposals={setCheckProposals} /> : <Navigate to='/' />} />
+          <Route path='/projectProposal/form' element={businessOwner ? <ProposalForm setProposals={setProposals} /> : <Navigate to='/' />} />
           <Route path='/projectProposal' element={businessOwner ? <ProposalList proposals={proposals} user={user}/> : <Navigate to='/' />} />
           <Route path='/projectProposal/:projectProposalId' element={businessOwner ? <ProposalDetails proposals={proposals} user={user} setProposals={setProposals} /> : <Navigate to='/' />} />
           <Route path='/developers' element={businessOwner ? <DeveloperList allDevelopers={allDevelopers} /> : <Navigate to='/' />} />
