@@ -23,10 +23,6 @@ const ProposalDetails = (props) => {
     const proposal = props.proposals?.find((pro) =>
         pro._id === projectProposalId)
 
-
-    const developer = developerId ? props.developers?.find((dev) =>
-        dev._id === developerId) : props.user
-
     if (!proposal) {
         return <p>Loading Proposal..</p>
     }
@@ -49,13 +45,12 @@ const ProposalDetails = (props) => {
 
 
     const handlePayment = async () => {
-        setErrorMessage('')
         const data = await paymentService.create(proposal._id)
         if (data.clientSecret) {
             setClientSecret(data.clientSecret)
             setShowPayment(true)
-        } else if (data.error) {
-            setErrorMessage(data.error)
+        } else {
+            <p>Cannot pay at the moment. Try again later.</p>
         }
     }
 
@@ -73,7 +68,9 @@ const ProposalDetails = (props) => {
     }
 
     const handleChat = async () => {
-        const chat = await chatService.create({ developerId: developer._id })
+        const devId = (proposal.developer?._id || proposal.developer)?.toString()
+        const chat = await chatService.create({ targetId: devId, 
+        role: 'developer' })
         navigate(`/chat/${chat._id}`)
     }
 
@@ -133,7 +130,7 @@ const ProposalDetails = (props) => {
                     <div className='payment-checkout-container'>
                         <p>Your project proposal has been accepted! Please proceed to payment.</p>
                         {!showPayment ? (
-                            <button className='pay-amt-btn' onClick={handlePayment}> Pay BHD{proposal.budget} Now </button>
+                            <button className='pay-amt-btn' onClick={handlePayment}> Pay {proposal.budget} BHD Now </button>
                         ) : (
                             clientSecret && (
                                 <Elements stripe={stripePromise} options={{ clientSecret }}>

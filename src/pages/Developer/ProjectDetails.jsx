@@ -8,8 +8,6 @@ const ProjectsDetails = (props) => {
 
     const navigate = useNavigate()
 
-    const currentUserId = (props.user?._id || props.user)?.toString()
-
     const project = props.proposals?.find((proj) =>
         proj._id === projectlistId)
 
@@ -26,8 +24,10 @@ const ProjectsDetails = (props) => {
 
     const handleSendChat = async () => {
         const ownerId = (project.businessOwner?._id || project.businessOwner)?.toString()
-        const chat = await chatService.create({ developerId: currentUserId, ownerId: ownerId, businessOwnerId: ownerId })
+        const chat = await chatService.create({ targetId: ownerId, 
+        role: 'businessOwner' })
         navigate(`/chat/${chat._id}`)
+
     }
 
     if (!project)
@@ -38,7 +38,6 @@ const ProjectsDetails = (props) => {
             <div className='detail-header-card'>
                 <div className='header-top'>
                     <h2 className='project-title'>{project.name}</h2>
-                    {/* <p>{project.paymentStatus || 'Unpaid'}</p> */}
                     <span className={`payment-status ${project.paymentStatus?.toLowerCase() || 'unpaid'}`}>
                         {project.paymentStatus || 'Unpaid'}
                     </span>

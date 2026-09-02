@@ -65,6 +65,7 @@ const DeveloperList = (props) => {
                         <br />
 
                         <button className="card-btn" onClick={() => handleSendProposal(dev._id)}>Send Proposal <span className="arrow"></span></button>
+                        <br />
                         <button className="card-btn" onClick={() => handleViewDetails(dev._id)}>View Details</button>
                     </div>
                 ))}
